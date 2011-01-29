@@ -21,22 +21,22 @@ The `sfSimpleBlog15Plugin` is a symfony plugin to create a simple blog. This plu
         }
 
 ## Dependencies ##
-  * sfGuardPlugin
-  * sfPropel15Plugin with 1.6 branch
-  * sfNestedCommentPlugin
-  * sfPropelActAsTaggableBehaviorPlugin
-  * sfPropelTaggableWidgetPlugin
-  * sfSyntaxHighlighterPlugin
-  * sfThemePlugin
-  * themeVeryplaintxtPlugin
-  * sfFeed2Plugin
-  * sfAssetLibraryPlugin
-  * sfThumbnailPlugin
-  * sfAdminDashPlugin
-  * sfFormExtraPlugin
-  * omCrossAppUrlPlugin
-  * sfJqueryReloadedPlugin
-  * sfPropelLuceneableBehaviorPlugin
+  * [sfGuardPlugin] (http://www.symfony-project.org/plugins/sfGuardPlugin)
+  * [sfPropel15Plugin with 1.6 branch] (https://github.com/fzaninotto/sfPropel15Plugin), see (https://github.com/fzaninotto/sfPropel15Plugin/commit/3059e1b9af3cb3b39e0096d7807d1cac6e7a230e)
+  * [sfNestedCommentPlugin] (https://github.com/nibsirahsieu/sfNestedCommentPlugin)
+  * [sfPropelActAsTaggableBehaviorPlugin] (http://www.symfony-project.org/plugins/sfPropelActAsTaggableBehaviorPlugin)
+  * [sfPropelTaggableWidgetPlugin] (http://www.symfony-project.org/plugins/sfPropelTaggableWidgetPlugin)
+  * [sfSyntaxHighlighterPlugin] (http://www.symfony-project.org/plugins/sfSyntaxHighlighterPlugin)
+  * [sfThemePlugin] (https://github.com/rafaelgou/sfThemePlugin)
+  * [themeVeryplaintxtPlugin] (https://github.com/nibsirahsieu/themeVeryplaintxtPlugin)
+  * [sfFeed2Plugin] (http://www.symfony-project.org/plugins/sfFeed2Plugin)
+  * [sfAssetLibraryPlugin] (http://www.symfony-project.org/plugins/sfAssetsLibraryPlugin)
+  * [sfThumbnailPlugin] (http://www.symfony-project.org/plugins/sfThumbnailPlugin)
+  * [sfAdminDashPlugin] (http://www.symfony-project.org/plugins/sfAdminDashPlugin)
+  * [sfFormExtraPlugin] (http://www.symfony-project.org/plugins/sfFormExtraPlugin)
+  * [omCrossAppUrlPlugin] (http://www.symfony-project.org/plugins/omCrossAppUrlPlugin)
+  * [sfJqueryReloadedPlugin] (http://www.symfony-project.org/plugins/sfJqueryReloadedPlugin)
+  * [sfPropelLuceneableBehaviorPlugin] (https://github.com/nibsirahsieu/sfPropelLuceneableBehaviorPlugin)
 
 ## Working Demo ##
-  * http://nibsirahsieu.com, this is my own blog and it is built on this plugin
+  * [http://nibsirahsieu.com](http://nibsirahsieu.com), this is my own blog and it is built on this plugin
