@@ -22,7 +22,7 @@ The `sfSimpleBlog15Plugin` is a symfony plugin to create a simple blog. This plu
 
 ## Dependencies ##
   * [sfGuardPlugin](http://www.symfony-project.org/plugins/sfGuardPlugin)
-  * [sfPropel15Plugin with 1.6 branch](https://github.com/fzaninotto/sfPropel15Plugin), [see](https://github.com/fzaninotto/sfPropel15Plugin/commit/3059e1b9af3cb3b39e0096d7807d1cac6e7a230e)
+  * [sfPropel15Plugin with 1.6 branch](https://github.com/fzaninotto/sfPropel15Plugin), [see this link](https://github.com/fzaninotto/sfPropel15Plugin/commit/3059e1b9af3cb3b39e0096d7807d1cac6e7a230e)
   * [sfNestedCommentPlugin](https://github.com/nibsirahsieu/sfNestedCommentPlugin)
   * [sfPropelActAsTaggableBehaviorPlugin](http://www.symfony-project.org/plugins/sfPropelActAsTaggableBehaviorPlugin)
   * [sfPropelTaggableWidgetPlugin](http://www.symfony-project.org/plugins/sfPropelTaggableWidgetPlugin)
