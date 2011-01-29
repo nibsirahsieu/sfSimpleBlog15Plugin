@@ -1,0 +1,54 @@
+generator:
+  class: sfPropelGenerator
+  param:
+    model_class:           sfSimpleBlogPost
+    theme:                 admin15
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          sf_simple_blog_post
+    with_propel_route:     1
+    #css:                   nothing
+    
+    config:
+      actions: ~
+      fields:
+        categories_as_string:               { label: Categories }
+        tags_as_string:                     { label: Tags }
+        nb_comments:                        { label: Comments }
+        sf_simple_blog_post_category_list:  { label: Categories }
+        updated_at:                         { label: Last Modified }
+        is_published:                       { label: Published }
+        allow_comments:                     { label: Allow Comments }
+        internal_published_at:              { label: Published on }
+      list:
+        title:            Posts
+        query_methods:    [ recent ]
+        max_per_page:     5
+        display:          [=title, author, categories_as_string, tags_as_string, nb_comments, is_published, allow_comments, updated_at]
+        with:             [<?php echo sfConfig::get('app_sfSimpleBlog_user_class', 'sfGuardUser')?>]
+        object_actions:
+          _edit:          ~
+          togglePublish:  { label: publish/unpublish, action: togglePublish }
+          toggleComment:  { label: enable/disable comments, action: toggleComment }
+          _delete:        ~
+      filter: ~
+        
+      form:
+        fields:
+          sf_simple_blog_post_category_list:
+            widgetOptions: { expanded: true }
+            
+      edit:
+        title:            Edit post "%%title%%"
+        display:
+          "Categories"   : [sf_simple_blog_post_category_list]
+          "Post"         : [title, content, allow_comments, is_published, internal_published_at, author_id]
+          "Tags"         : [tags]
+      new:
+        title:            New Post
+        display:
+          "Categories"   : [sf_simple_blog_post_category_list]
+          "Post"         : [title, content, allow_comments, is_published, internal_published_at, author_id]
+          "Tags"         : [tags]

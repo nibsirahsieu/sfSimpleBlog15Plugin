@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database name="propel" package="plugins.sfSimpleBlog15Plugin.lib.model" defaultIdMethod="native">
+
+  <table name="sf_blog_category" phpName="sfSimpleBlogCategory">
+    <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true" />
+    <column name="name" type="varchar" size="20" required="true" primaryString="true" />
+    <column name="description" type="varchar" size="255" lazyLoad="true" />
+    <unique>
+      <unique-column name="name" />
+    </unique>
+  </table>
+
+  <table name="sf_blog_post" phpName="sfSimpleBlogPost">
+    <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true" />
+    <column name="author_id" type="integer" required="true" />
+    <foreign-key foreignTable="sf_guard_user" onDelete="cascade">
+      <reference local="author_id" foreign="id" />
+    </foreign-key>
+    <column name="title" type="varchar" size="255" required="true" primaryString="true" />
+    <column name="stripped_title" type="varchar" size="245" required="true" />
+    <column name="content" type="longvarchar" required="true" />
+    <column name="is_published" type="boolean" default="false" />
+    <column name="allow_comments" type="boolean" default="true" />
+    <column name="updated_at" type="timestamp" lazyLoad="true" />
+    <column name="published_at" type="date" />
+    <column name="internal_published_at" type="timestamp" />
+    <!--<column name="url" type="varchar" size="255" required="true" />-->
+    <column name="version" type="smallint" default="1" />
+    <behavior name="sluggable">
+      <parameter name="slug_column" value="stripped_title" />
+      <parameter name="permanent" value="true" />
+    </behavior>
+    <behavior name="luceneable">
+      <parameter name="id" value="keyword" />
+      <parameter name="title" value="text:1.8" />
+      <parameter name="content" value="unstored:1.5" />
+      <parameter name="tags_as_string" value="text" />
+    </behavior>
+    <behavior name="commentable" />
+    <behavior name="versionable">
+      <parameter name="version_column" value="version" />
+    </behavior>
+    <index>
+      <index-column name="is_published" />
+    </index>
+    <unique>
+      <unique-column name="is_published" />
+      <unique-column name="internal_published_at" />
+    </unique>
+    <unique name="stripped_title_published_at">
+      <unique-column name="stripped_title" />
+      <unique-column name="published_at" />
+    </unique>
+  </table>
+
+  <table name="sf_blog_post_view" phpName="sfSimpleBlogPostView" readOnly="true" skipSql="true">
+    <column name="id" type="integer" primaryKey="true" required="true" />
+    <column name="title" type="varchar" size="255" />
+    <column name="stripped_title" type="varchar" size="245" />
+    <column name="is_published" type="boolean" default="false" />
+    <column name="published_at" type="date" />
+    <column name="internal_published_at" type="timestamp" />
+    <behavior name="symfony">
+      <parameter name="form" value="true" />
+      <parameter name="filter" value="false" />
+    </behavior>
+  </table>
+
+  <table name="sf_blog_post_category" phpName="sfSimpleBlogPostCategory">
+    <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true" />
+    <column name="category_id" type="integer" required="true" primaryKey="true" />
+    <foreign-key foreignTable="sf_blog_category" onDelete="cascade">
+      <reference local="category_id" foreign="id" />
+    </foreign-key>
+    <column name="sf_blog_post_id" type="integer" required="true" primaryKey="true" />
+    <foreign-key foreignTable="sf_blog_post" onDelete="cascade">
+      <reference local="sf_blog_post_id" foreign="id" />
+    </foreign-key>
+    <behavior name="symfony">
+      <parameter name="form" value="false" />
+      <parameter name="filter" value="false" />
+    </behavior>
+  </table>
+  
+  <table name="sf_blog_about" phpName="sfSimpleBlogAbout">
+    <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true" />
+    <column name="about" type="longvarchar" required="true" />
+    <behavior name="symfony">
+      <parameter name="form" value="true" />
+      <parameter name="filter" value="false" />
+    </behavior>
+  </table>
+
+  <table name="sf_blog_author" phpName="sfSimpleBlogAuthor">
+    <column name="user_id" type="integer" required="true" primaryKey="true" />
+    <foreign-key foreignTable="sf_guard_user" onDelete="cascade">
+      <reference local="user_id" foreign="id" />
+    </foreign-key>
+    <column name="email" type="varchar" size="255" required="true" />
+    <column name="first_name" type="varchar" size="255" required="true" primaryString="true" />
+    <column name="last_name" type="varchar" size="255" />
+    <column name="website" type="varchar" size="255" />
+  </table>
+</database>

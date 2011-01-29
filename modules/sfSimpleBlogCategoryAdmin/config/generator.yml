@@ -1,0 +1,28 @@
+generator:
+  class: sfPropelGenerator
+  param:
+    model_class:           sfSimpleBlogCategory
+    theme:                 admin15
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          sf_simple_blog_category
+    with_propel_route:     1
+    #css:                   nothing
+
+    config:
+      actions: ~
+      fields:  ~
+      list:
+        title: Categories
+        display: [=name, description]
+      filter:
+        class: false
+      form:    ~
+      edit:
+        title: Edit category %%name%%
+        display: [name, description]
+      new:
+        title: New Category
+        display: [name, description]
