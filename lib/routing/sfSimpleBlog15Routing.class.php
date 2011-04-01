@@ -32,6 +32,10 @@ class sfSimpleBlog15Routing
       'with_wildcard_routes' => true,
       'requirements'         => array(),
     )));
+    $event->getSubject()->prependRoute('sf_simple_blog_post_view_version', new sfRoute('/sf_simple_blog_post/:id/show.:sf_format', array('module' => 'sfSimpleBlogPostAdmin', 'action' => 'viewVersion', 'sf_format' => 'html')));
+    $event->getSubject()->prependRoute('sf_simple_blog_post_restore_version', new sfRoute('/sf_simple_blog_post/:id/restore.:sf_format', array('module' => 'sfSimpleBlogPostAdmin', 'action' => 'restoreVersion', 'sf_format' => 'html')));
+    $event->getSubject()->prependRoute('sf_simple_blog_post_delete_version', new sfRoute('/sf_simple_blog_post/:id/delete.:sf_format', array('module' => 'sfSimpleBlogPostAdmin', 'action' => 'deleteVersion', 'sf_format' => 'html')));
+    $event->getSubject()->prependRoute('sf_simple_blog_post_delete_versions', new sfRoute('/sf_simple_blog_post/deleteVersions.:sf_format', array('module' => 'sfSimpleBlogPostAdmin', 'action' => 'deleteVersions', 'sf_format' => 'html')));
   }
 
   static public function addRouteForCategoryAdmin(sfEvent $event)

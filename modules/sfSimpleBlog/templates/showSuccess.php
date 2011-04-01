@@ -10,7 +10,7 @@
 <?php endif; ?>
 
 <span class="sfSimpleBlog">
-  <?php include_partial('sfSimpleBlog/post', array('post' => $post, 'in_list' => false, 'sf_cache_key' => $post->getId())) ?>
+  <?php include_partial('sfSimpleBlog/post', array('post' => $post, 'in_list' => false)) ?>
   <?php include_component('sfNestedComment', 'showComments', array('object' => $post)) ?>
 </span>
 

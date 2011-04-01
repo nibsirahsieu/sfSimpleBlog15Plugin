@@ -22,18 +22,21 @@ generator:
         is_published:                       { label: Published }
         allow_comments:                     { label: Allow Comments }
         internal_published_at:              { label: Published on }
+
       list:
         title:            Posts
         query_methods:    [ recent ]
         max_per_page:     5
-        display:          [=title, author, categories_as_string, tags_as_string, nb_comments, is_published, allow_comments, updated_at]
+        display:          [=title, author, categories_as_string, tags_as_string, _nb_comments, is_published, allow_comments, updated_at]
         with:             [<?php echo sfConfig::get('app_sfSimpleBlog_user_class', 'sfGuardUser')?>]
         object_actions:
           _edit:          ~
           togglePublish:  { label: publish/unpublish, action: togglePublish }
           toggleComment:  { label: enable/disable comments, action: toggleComment }
           _delete:        ~
-      filter: ~
+          
+      filter:
+        display:          [title, author_id, is_published, sf_simple_blog_post_category_list]
         
       form:
         fields:

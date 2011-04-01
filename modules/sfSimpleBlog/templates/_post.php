@@ -13,7 +13,7 @@
       <?php echo format_date(strtotime($post->getPublishedAt()), 'P') ?>
       <?php if ($sf_user->isAuthenticated()): ?>
         <?php $user_id = $sf_user->getAttribute('user_id', null, 'sfGuardSecurityUser') ?>
-        <?php if ($post->getAuthorId() == $user_id): ?>
+        <?php if (null !== $user_id && $post->getAuthorId() == $user_id): ?>
           <a href="<?php echo cross_app_url_for('backend', '@sf_simple_blog_post_edit?id='.$post->getId()) ?>">(<?php echo __('Edit') ?>)</a>
         <?php endif; ?>
       <?php endif; ?>

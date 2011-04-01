@@ -18,3 +18,6 @@
     <?php include_partial('sfSimpleBlogPostAdmin/form_actions', array('sf_simple_blog_post' => $sf_simple_blog_post, 'form' => $form, 'configuration' => $configuration, 'helper' => $helper)) ?>
   </form>
 </div>
+<?php if (!$form->isNew()): ?>
+  <?php include_partial('versions', array('versions' => $form->getObject()->getAllVersions(), 'sf_simple_blog_post' => $sf_simple_blog_post)) ?>
+<?php endif; ?>

@@ -10,7 +10,7 @@
     <li class="widget-container widget_recent_comment">
       <h3 class="widget-title"><?php echo __('Recent Comments') ?></h3>
       <ul>
-        <?php include_component('sfNestedComment', 'recentComments', array('url_method' => array('sfSimpleBlogTools', 'generatePostUri'))) ?>
+        <?php include_component('sfNestedComment', 'recentComments') ?>
       </ul>
     </li>
   <?php elseif($widget == 'tags'): ?>

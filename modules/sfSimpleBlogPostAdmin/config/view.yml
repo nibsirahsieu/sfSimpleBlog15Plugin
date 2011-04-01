@@ -1,0 +1,4 @@
+viewVersionSuccess:
+  javascripts: [-*]
+  stylesheets: [-*, /sfSimpleBlog15Plugin/css/preview.css]
+  

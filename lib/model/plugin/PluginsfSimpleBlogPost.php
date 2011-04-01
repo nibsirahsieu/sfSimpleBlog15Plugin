@@ -20,7 +20,6 @@
 class PluginsfSimpleBlogPost extends BasesfSimpleBlogPost {
   public function  getExtract()
   {
-    $extract = '';
     //search for <p><!-- pagebreak --></p>
     $v = $this->getContent();
     if (false === $pos = stripos($v, '<p><!-- pagebreak -->'))
@@ -29,9 +28,9 @@ class PluginsfSimpleBlogPost extends BasesfSimpleBlogPost {
     }
     if ($pos !== false)
     {
-      $extract = substr($v, 0, $pos-1);
+      return substr($v, 0, $pos-1);
     }
-    return $extract;
+    return $v;
   }
   
   public function setInternalPublishedAt($v)
@@ -112,6 +111,14 @@ class PluginsfSimpleBlogPost extends BasesfSimpleBlogPost {
   public function getFeedLink()
   {
     return sfSimpleBlogTools::generatePostUri($this);
+  }
+
+  public function getAllPreviousVersions(PropelPDO $con = null)
+  {
+    $criteria = new Criteria();
+		$criteria->addAscendingOrderByColumn(sfSimpleBlogPostVersionPeer::VERSION);
+    $criteria->add(sfSimpleBlogPostVersionPeer::VERSION, $this->getVersion(), Criteria::LESS_THAN);
+		return $this->getsfSimpleBlogPostVersions($criteria, $con);
   }
 } // sfSimpleBlogPost
 

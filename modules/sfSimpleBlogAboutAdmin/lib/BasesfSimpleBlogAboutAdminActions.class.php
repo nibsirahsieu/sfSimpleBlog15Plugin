@@ -15,7 +15,7 @@ class BasesfSimpleBlogAboutAdminActions extends sfActions
     $this->form = new sfSimpleBlogAboutForm($this->about);
     if ($this->form->bindAndSave($request->getParameter($this->form->getName())))
     {
-      return $this->redirect('@sf_simple_blog_about');
+      return $this->redirect('@sf_simple_blog_about_index');
     }
     $this->setTemplate('index');
   }

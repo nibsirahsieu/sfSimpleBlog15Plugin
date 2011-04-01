@@ -8,9 +8,9 @@
 
 <?php foreach($post_pager->getResults() as $post): ?>
   <?php if (sfConfig::get('app_sfSimpleBlog_use_post_extract', true)): ?>
-    <?php include_partial('sfSimpleBlog/post_short', array('post' => $post, 'in_list' => true, 'postCategories' => $postCategories, 'sf_cache_key' => $post->getId())) ?>
+    <?php include_partial('sfSimpleBlog/post_short', array('post' => $post, 'in_list' => true, 'postCategories' => $postCategories)) ?>
   <?php else: ?>
-    <?php include_partial('sfSimpleBlog/post', array('post' => $post, 'in_list' => true, 'postCategories' => $postCategories, 'sf_cache_key' => $post->getId())) ?>
+    <?php include_partial('sfSimpleBlog/post', array('post' => $post, 'in_list' => true, 'postCategories' => $postCategories)) ?>
   <?php endif; ?>
   <div class="article-separator"></div>
 <?php endforeach; ?>

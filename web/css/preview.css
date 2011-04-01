@@ -1,0 +1,17 @@
+body {
+    background: none repeat scroll 0 0 #FFFFFF;
+}
+body, td, pre {
+    color: #000000;
+    font-family: Verdana,Arial,Helvetica,sans-serif;
+    font-size: 10px;
+    margin: 8px;
+}
+#content-preview
+{
+  margin-left: 20px;
+}
+#sf_admin_theme_header, #sf_admin_menu, #sf_admin_path, #sf_admin_theme_footer
+{
+  display: none;
+}

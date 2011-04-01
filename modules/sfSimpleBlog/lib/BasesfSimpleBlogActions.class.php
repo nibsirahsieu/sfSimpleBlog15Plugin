@@ -2,7 +2,7 @@
 
 /*
  * This file is part of the sfSimpleBlog package.
- * (c) 2004-2006 Francois Zaninotto <francois.zaninotto@symfony-project.com>
+ * (c) Nibsirahsieu NT <nibsirahsieu@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -13,7 +13,7 @@
  *
  * @package    sfSimpleBlog
  * @subpackage plugin
- * @author     Francois Zaninotto <francois.zaninotto@symfony-project.com>
+ * @author     Nibsirahsieu NT <nibsirahsieu@gmail.com>
  * @version    SVN: $Id$
  */
 class BasesfSimpleBlogActions extends sfActions
@@ -72,7 +72,7 @@ class BasesfSimpleBlogActions extends sfActions
     $posts = sfSimpleBlogPostQuery::create()
       ->recent()
       ->published()
-      _>limit($request->getParameter('nb', sfConfig::get('app_sfSimpleBlog_feed_count', 5)))
+      ->limit($request->getParameter('nb', sfConfig::get('app_sfSimpleBlog_feed_count', 5)))
       ->find();
 
     $this->feed = sfFeedPeer::createFromObjects(
