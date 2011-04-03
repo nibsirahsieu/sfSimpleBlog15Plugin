@@ -1,4 +1,5 @@
-<?php use_helper('Date', 'sfSimpleBlog', 'crossAppLink') ?>
+<?php use_stylesheet('/sfSimpleBlog15Plugin/css/socialbookmark.css', 'last') ?>
+<?php use_helper('Date', 'sfSimpleBlog', 'crossAppLink', 'SocialBookmarking') ?>
 <div class="post hentry" id="post-<?php echo $post->getId() ?>">
   <h2 class="entry-title">
     <?php if ($in_list): ?>
@@ -22,6 +23,21 @@
   <div class="entry-content">
     <?php echo $post->getContent(ESC_RAW)?>
   </div>
+  <?php $shareOn = sfConfig::get('app_sfSimpleBlog_share_on', false) ?>
+  <?php if ($shareOn): ?>
+    <?php $url = url_for(sfSimpleBlogTools::generatePostUri($post), true) ?>
+    <div class="sharing">
+      <strong>Share this</strong>
+      <div class="social-button">
+      <?php if ($shareOn === 'all'): ?>
+        <?php echo link_to_all_social_bookmarking($url, $post->getTitle()) ?>
+      <?php else: ?>
+        <?php echo link_to_social_bookmarking($shareOn, $url, $post->getTitle()) ?>
+      <?php endif; ?>
+      </div>
+    </div>
+  <?php endif; ?>
+
   <div class="entry-meta">
     <span class="entry-category">
       <?php echo __('Posted in ') ?>&rsaquo;
