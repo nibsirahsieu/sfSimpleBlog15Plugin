@@ -20,13 +20,14 @@ class BasesfSimpleBlogComponents extends sfComponents
 {
   public function executeRecentPosts()
   {
-    $this->posts = sfSimpleBlogPostViewQuery::create()
+    $this->posts = sfSimpleBlogPostQuery::create()
+      ->select(array('Title', 'PublishedAt', 'StrippedTitle'))
       ->recent()
       ->published()
       ->limit(sfConfig::get('app_sfSimpleBlog_post_recent', 5))
       ->find();
   }
-
+  
   public function executeTagList()
   {
     $c = new Criteria();

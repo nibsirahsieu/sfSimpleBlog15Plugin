@@ -57,11 +57,14 @@ class BasesfSimpleBlogActions extends sfActions
       $request->getParameter('stripped_title'),
       $this->getDateFromRequest($request)
     );
+
     $this->forward404Unless($this->post);
-    $this->prevPost = sfSimpleBlogPostViewQuery::create()
+    $this->prevPost = sfSimpleBlogPostQuery::create()
+        ->select(array('Title', 'PublishedAt', 'StrippedTitle'))
         ->previousPublished($this->post->getInternalPublishedAt())
         ->findOne();
-    $this->nextPost = sfSimpleBlogPostViewQuery::create()
+    $this->nextPost = sfSimpleBlogPostQuery::create()
+        ->select(array('Title', 'PublishedAt', 'StrippedTitle'))
         ->nextPublished($this->post->getInternalPublishedAt())
         ->findOne();
   }

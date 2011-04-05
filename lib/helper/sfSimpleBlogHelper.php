@@ -13,9 +13,10 @@ function get_tag_links($tags)
 
 function link_to_post($post, $text = '', $postfix = null, $options = array())
 {
+  $post = $post instanceof sfOutputEscaper ? $post->getRawValue() : $post;
   if(!$text)
   {
-    $text = $post->getTitle();
+    $text = ($post instanceof BaseObject) ? $post->getTitle() : $post['Title'];
   }
   return link_to($text, sfSimpleBlogTools::generatePostUri($post, $postfix), $options);
 }

@@ -21,10 +21,9 @@
     <column name="content" type="longvarchar" required="true" />
     <column name="is_published" type="boolean" default="false" />
     <column name="allow_comments" type="boolean" default="true" />
-    <column name="updated_at" type="timestamp" lazyLoad="true" />
+    <column name="updated_at" type="timestamp" />
     <column name="published_at" type="date" />
     <column name="internal_published_at" type="timestamp" />
-    <!--<column name="url" type="varchar" size="255" required="true" />-->
     <column name="version" type="smallint" default="1" />
     <behavior name="sluggable">
       <parameter name="slug_column" value="stripped_title" />
@@ -51,19 +50,6 @@
       <unique-column name="stripped_title" />
       <unique-column name="published_at" />
     </unique>
-  </table>
-
-  <table name="sf_blog_post_view" phpName="sfSimpleBlogPostView" readOnly="true" skipSql="true">
-    <column name="id" type="integer" primaryKey="true" required="true" />
-    <column name="title" type="varchar" size="255" />
-    <column name="stripped_title" type="varchar" size="245" />
-    <column name="is_published" type="boolean" default="false" />
-    <column name="published_at" type="date" />
-    <column name="internal_published_at" type="timestamp" />
-    <behavior name="symfony">
-      <parameter name="form" value="true" />
-      <parameter name="filter" value="false" />
-    </behavior>
   </table>
 
   <table name="sf_blog_post_category" phpName="sfSimpleBlogPostCategory">
