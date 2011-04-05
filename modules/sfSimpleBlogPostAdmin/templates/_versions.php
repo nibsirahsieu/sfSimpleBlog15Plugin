@@ -19,8 +19,8 @@
         <td class="sf_admin_text">
           <ul class="sf_admin_td_actions">
             <li><?php echo link_to(__('View'), 'sfSimpleBlogPostAdmin/viewVersion?id='.$version->getId().'&version='.$version->getVersion(), array('popup'=>array('theWindow', 'left=100,top=10,width=600,height=600,location=no,scrollbars =yes,resizable=yes,directories=no,status=no,toolbar=no,menubar=no'))) ?></li>
-            <li><?php echo link_to(__('Restore'), 'sfSimpleBlogPostAdmin/restoreVersion?id='.$version->getId().'&version='.$version->getVersion(), array('confirm' => __('Are your sure?'))) ?></li>
-            <li><?php echo link_to(__('Delete'), 'sfSimpleBlogPostAdmin/deleteVersion?id='.$version->getId().'&version='.$version->getVersion(), array('confirm' => __('Are your sure?'))) ?></li>
+            <li><?php echo link_to(__('Restore'), 'sfSimpleBlogPostAdmin/restoreVersion?id='.$version->getId().'&version='.$version->getVersion(), array('confirm' => __('Are your sure?'), 'method' => 'put')) ?></li>
+            <li><?php echo link_to(__('Delete'), 'sfSimpleBlogPostAdmin/deleteVersion?id='.$version->getId().'&version='.$version->getVersion(), array('confirm' => __('Are your sure?'), 'method' => 'delete')) ?></li>
           </ul>
         </td>
       </tr>
@@ -32,7 +32,12 @@
       </tr>
     </tfoot>
   </table>
-  <input type="submit" value="Delete Versions" />
+  <?php if (count($versions) > 0): ?>
+    <?php $form = new BaseForm(); if ($form->isCSRFProtected()): ?>
+      <input type="hidden" name="<?php echo $form->getCSRFFieldName() ?>" value="<?php echo $form->getCSRFToken() ?>" />
+    <?php endif; ?>
+    <input type="submit" value="Delete Versions" />
+  <?php endif; ?>
   </form>
 </div>
 <script type="text/javascript">

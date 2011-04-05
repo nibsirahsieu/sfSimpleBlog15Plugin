@@ -1,6 +1,6 @@
-<?php $nb_comments = $sf_simple_blog_post->getNbComments() ?>
-<?php if ($nb_comments > 0): ?>
-  <?php echo link_to($nb_comments, '@sf_nested_comment?commentable_model=sfSimpleBlogPost&commentable_id='.$sf_simple_blog_post->getId(), array('title' => 'View Comments')) ?>
+<?php $commentCounter = $sf_simple_blog_post->getCommentCounter() ?>
+<?php if (0 < $nb_comments = $commentCounter->getNbComments()): ?>
+  <?php echo link_to($nb_comments. __(' Comments'), '@sf_nested_comment?commentable_model=sfSimpleBlogPost&commentable_id='.$sf_simple_blog_post->getId(), array('title' => $commentCounter->getNbApprovedComments(). __(' Approved'). ', '.$commentCounter->getNbModeratedComments(). __(' Pending'))) ?><br/>
 <?php else: ?>
-  <?php echo $nb_comments ?>
+  <?php echo 'No Comments' ?>
 <?php endif; ?>

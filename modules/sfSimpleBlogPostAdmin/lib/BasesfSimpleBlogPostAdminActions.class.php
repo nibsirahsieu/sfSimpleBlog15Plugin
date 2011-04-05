@@ -24,7 +24,7 @@ class BasesfSimpleBlogPostAdminActions extends autoSfSimpleBlogPostAdminActions
     }
     else
     {
-      $this->redirect('sfSimpleBlogPostAdmin/list');
+      $this->redirect('@sf_simple_blog_post');
     }
   }
 
@@ -40,7 +40,7 @@ class BasesfSimpleBlogPostAdminActions extends autoSfSimpleBlogPostAdminActions
     }
     else
     {
-      $this->redirect('sfSimpleBlogPostAdmin/list');
+      $this->redirect('@sf_simple_blog_post');
     }
   }
 
@@ -97,6 +97,8 @@ class BasesfSimpleBlogPostAdminActions extends autoSfSimpleBlogPostAdminActions
 
   public function executeDeleteVersion(sfWebRequest $request)
   {
+    $request->checkCSRFProtection();
+    
     $this->forward404Unless($post_version = sfSimpleBlogPostVersionQuery::create()->filterById($request->getParameter('id'))->filterByVersion($request->getParameter('version'))->findOne());
 
     $post_version->delete();
@@ -107,6 +109,8 @@ class BasesfSimpleBlogPostAdminActions extends autoSfSimpleBlogPostAdminActions
 
   public function executeRestoreVersion(sfWebRequest $request)
   {
+    $request->checkCSRFProtection();
+    
     $this->forward404Unless($post = sfSimpleBlogPostQuery::create()->findPk($request->getParameter('id')));
 
     $new_version = $request->getParameter('version');
@@ -118,6 +122,8 @@ class BasesfSimpleBlogPostAdminActions extends autoSfSimpleBlogPostAdminActions
 
   public function executeDeleteVersions(sfWebRequest $request)
   {
+    $request->checkCSRFProtection();
+    
     if (!$versions = $request->getParameter('versions'))
     {
       $this->getUser()->setFlash('error', 'You must at least select one item.');
