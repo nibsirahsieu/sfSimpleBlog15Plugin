@@ -30,16 +30,16 @@ class PluginsfSimpleBlogPostQuery extends BasesfSimpleBlogPostQuery {
 
   public function previousPublished($publishedAt)
   {
-    return $this->filterByInternalPublishedAt($publishedAt, Criteria::LESS_THAN)->
-           recent()->
-           published();
+    return $this->filterByInternalPublishedAt($publishedAt, Criteria::LESS_THAN)
+            ->recent()
+            ->published();
   }
 
   public function nextPublished($publishedAt)
   {
-    return $this->filterByInternalPublishedAt($publishedAt, Criteria::GREATER_THAN)->
-           orderByInternalPublishedAt('asc')->
-           published();
+    return $this->filterByInternalPublishedAt($publishedAt, Criteria::GREATER_THAN)
+            ->orderByInternalPublishedAt('asc')
+            ->published();
   }
 
   public function findByStrippedTitleAndDate($text, $date)

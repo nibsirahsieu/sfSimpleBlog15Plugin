@@ -112,14 +112,6 @@ class PluginsfSimpleBlogPost extends BasesfSimpleBlogPost {
   {
     return sfSimpleBlogTools::generatePostUri($this);
   }
-
-  public function getAllPreviousVersions(PropelPDO $con = null)
-  {
-    $criteria = new Criteria();
-		$criteria->addAscendingOrderByColumn(sfSimpleBlogPostVersionPeer::VERSION);
-    $criteria->add(sfSimpleBlogPostVersionPeer::VERSION, $this->getVersion(), Criteria::LESS_THAN);
-		return $this->getsfSimpleBlogPostVersions($criteria, $con);
-  }
 } // sfSimpleBlogPost
 
 sfPropelBehavior::add('sfSimpleBlogPost', array('sfPropelActAsTaggableBehavior'));
