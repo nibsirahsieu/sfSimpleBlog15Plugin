@@ -1,0 +1,28 @@
+generator:
+  class: sfPropelGenerator
+  param:
+    model_class:           sfSimpleBlogPage
+    theme:                 admin15
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          sf_simple_blog_page
+    with_propel_route:     1
+    
+    config:
+      actions: ~
+      fields:
+        is_published: { label: 'Published?' }
+      list:
+        title: List of pages
+        display: [=name, is_published]
+      filter:
+        display: [name, is_published]
+      form:    ~
+      edit:
+        title: Edit %%name%%
+        display: [name, content, is_published]
+      new:     
+        title: New Page
+        display: [name, content, is_published]

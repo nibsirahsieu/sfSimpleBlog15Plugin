@@ -112,6 +112,20 @@ class PluginsfSimpleBlogPost extends BasesfSimpleBlogPost {
   {
     return sfSimpleBlogTools::generatePostUri($this);
   }
+
+  public function getPreviousPost()
+  {
+    return sfSimpleBlogPostQuery::create()
+        ->previousPublished($this->getInternalPublishedAt())
+        ->findOne();
+  }
+
+  public function getNextPost()
+  {
+    return sfSimpleBlogPostQuery::create()
+        ->nextPublished($this->getInternalPublishedAt())
+        ->findOne();
+  }
 } // sfSimpleBlogPost
 
 sfPropelBehavior::add('sfSimpleBlogPost', array('sfPropelActAsTaggableBehavior'));

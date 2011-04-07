@@ -96,8 +96,8 @@ class BasesfSimpleBlogActions extends sfActions
     $this->post_pager = sfLuceneModelSearch::create('sfSimpleBlogPost', $search)->paginate($request->getParameter('page', 1));
   }
   
-  public function executeAbout(sfWebRequest $request)
+  public function executePage(sfWebRequest $request)
   {
-    $this->about = sfSimpleBlogAboutQuery::create()->findOneOrCreate();
+    $this->forward404Unless($this->page = sfSimpleBlogPageQuery::create()->filterByStrippedTitle($request->getParameter('page_title'))->findOne());
   }
 }

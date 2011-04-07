@@ -25,17 +25,17 @@
     <column name="published_at" type="date" />
     <column name="internal_published_at" type="timestamp" />
     <column name="version" type="smallint" default="1" />
-    <behavior name="sluggable">
-      <parameter name="slug_column" value="stripped_title" />
-      <parameter name="permanent" value="true" />
-    </behavior>
+    <behavior name="commentable" />
     <behavior name="luceneable">
       <parameter name="id" value="keyword" />
       <parameter name="title" value="text:1.8" />
       <parameter name="content" value="unstored:1.5" />
       <parameter name="tags_as_string" value="text" />
     </behavior>
-    <behavior name="commentable" />
+    <behavior name="sluggable">
+      <parameter name="slug_column" value="stripped_title" />
+      <parameter name="permanent" value="true" />
+    </behavior>
     <behavior name="versionable">
       <parameter name="version_column" value="version" />
     </behavior>
@@ -68,15 +68,6 @@
     </behavior>
   </table>
   
-  <table name="sf_blog_about" phpName="sfSimpleBlogAbout">
-    <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true" />
-    <column name="about" type="longvarchar" required="true" />
-    <behavior name="symfony">
-      <parameter name="form" value="true" />
-      <parameter name="filter" value="false" />
-    </behavior>
-  </table>
-
   <table name="sf_blog_author" phpName="sfSimpleBlogAuthor">
     <column name="user_id" type="integer" required="true" primaryKey="true" />
     <foreign-key foreignTable="sf_guard_user" onDelete="cascade">
@@ -86,5 +77,20 @@
     <column name="first_name" type="varchar" size="255" required="true" primaryString="true" />
     <column name="last_name" type="varchar" size="255" />
     <column name="website" type="varchar" size="255" />
+  </table>
+
+  <table name="sf_blog_page" phpName="sfSimpleBlogPage">
+    <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true" />
+    <column name="name" type="varchar" size="50" required="true" primaryString="true" />
+    <column name="content" type="longvarchar" required="true" />
+    <column name="stripped_title" type="varchar" size="50" />
+    <column name="is_published" type="boolean" default="false" />
+    <column name="updated_at" type="timestamp" />
+    <behavior name="sluggable">
+      <parameter name="slug_column" value="stripped_title" />
+    </behavior>
+    <unique>
+      <unique-column name="stripped_title" />
+    </unique>
   </table>
 </database>
