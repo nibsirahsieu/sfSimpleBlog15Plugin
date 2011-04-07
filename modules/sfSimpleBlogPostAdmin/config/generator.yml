@@ -9,7 +9,6 @@ generator:
     plural:                ~
     route_prefix:          sf_simple_blog_post
     with_propel_route:     1
-    #css:                   nothing
     
     config:
       actions: ~

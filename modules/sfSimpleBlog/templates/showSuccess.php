@@ -14,16 +14,18 @@
   <?php include_component('sfNestedComment', 'showComments', array('object' => $post)) ?>
 </span>
 
-<?php if (null !== $prevPost || null !== $nextPost): ?>
+<?php $link_prev = link_to_previous_post($post) ?>
+<?php $link_next = link_to_next_post($post) ?>
+<?php if ($link_prev || $link_next): ?>
 <div id="nav-below" class="navigation">
-  <?php if($prevPost): ?>
+  <?php if($link_prev): ?>
     <div class="nav-previous">
-      <span class="meta-nav">&larr;</span><?php echo link_to_post($prevPost) ?>
+      <span class="meta-nav">&larr;</span><?php echo $link_prev ?>
     </div>
   <?php endif; ?>
-  <?php if($nextPost): ?>
+  <?php if($link_next): ?>
     <div class="nav-next">
-      <?php echo link_to_post($nextPost) ?><span class="meta-nav">&rarr;</span>
+      <?php echo $link_next ?><span class="meta-nav">&rarr;</span>
     </div>
   <?php endif; ?>
 </div>

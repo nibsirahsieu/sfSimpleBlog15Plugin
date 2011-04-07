@@ -30,25 +30,10 @@ class BasesfSimpleBlogActions extends sfActions
   
   public function executeIndex(sfWebRequest $request)
   {
-    $this->postCategories = array();
     $this->post_pager = sfSimpleBlogPostQuery::create()
       ->recent()
       ->published()
       ->paginate($request->getParameter('page', 1), sfConfig::get('app_sfSimpleBlog_post_max_per_page', 5));
-
-    $results = $this->post_pager->getResults();
-    if (!$results->isEmpty())
-    {
-      $postCategories = sfSimpleBlogPostCategoryQuery::create()
-        ->join('sfSimpleBlogCategory')
-        ->select(array('SfBlogPostId', 'sfSimpleBlogCategory.Name'))
-        ->filterBySfBlogPostId(array_keys($results->toKeyValue()))
-        ->find();
-      foreach ($postCategories as $postCategory)
-      {
-        $this->postCategories[$postCategory['SfBlogPostId']][] = $postCategory['sfSimpleBlogCategory.Name'];
-      }
-    }
   }
 
   public function executeShow(sfWebRequest $request)
@@ -57,16 +42,7 @@ class BasesfSimpleBlogActions extends sfActions
       $request->getParameter('stripped_title'),
       $this->getDateFromRequest($request)
     );
-
     $this->forward404Unless($this->post);
-    $this->prevPost = sfSimpleBlogPostQuery::create()
-        ->select(array('Title', 'PublishedAt', 'StrippedTitle'))
-        ->previousPublished($this->post->getInternalPublishedAt())
-        ->findOne();
-    $this->nextPost = sfSimpleBlogPostQuery::create()
-        ->select(array('Title', 'PublishedAt', 'StrippedTitle'))
-        ->nextPublished($this->post->getInternalPublishedAt())
-        ->findOne();
   }
 
   public function executePostsFeed(sfWebRequest $request)

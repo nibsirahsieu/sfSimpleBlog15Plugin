@@ -21,6 +21,26 @@ function link_to_post($post, $text = '', $postfix = null, $options = array())
   return link_to($text, sfSimpleBlogTools::generatePostUri($post, $postfix), $options);
 }
 
+function link_to_previous_post($post, $options = array())
+{
+  $previous_post = $post->getPreviousPost();
+  if ($previous_post)
+  {
+    return link_to_post($previous_post);
+  }
+  return '';
+}
+
+function link_to_next_post($post, $options = array())
+{
+  $next_post = $post->getNextPost();
+  if ($next_post)
+  {
+    return link_to_post($next_post);
+  }
+  return '';
+}
+
 function get_category_links($categories)
 {
   $links = array();

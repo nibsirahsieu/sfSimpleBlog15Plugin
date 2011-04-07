@@ -18,17 +18,8 @@
   </div>
   <div class="entry-meta">
     <span class="entry-category">
-      <?php if (isset($postCategories)): ?>
-        <?php if (isset($postCategories[$post->getId()])): ?>
-          <?php $categories = $postCategories[$post->getId()] ?>
-        <?php else: ?>
-          <?php $categories = $post->getCategoriesAsArray() ?>
-        <?php endif; ?>
-      <?php else: ?>
-        <?php $categories = $post->getCategoriesAsArray() ?>
-      <?php endif; ?>
       <?php echo __('Posted in ') ?>&rsaquo;
-      <?php echo __('%1%', array('%1%' => get_category_links($categories))) ?>
+      <?php echo __('%1%', array('%1%' => get_category_links($post->getCategoriesAsArray()))) ?>
     </span>
     <span class="meta-sep">|</span>
     <span class="tag-links">
