@@ -35,4 +35,9 @@ class BasesfSimpleBlogComponents extends sfComponents
     $c->add(TaggingPeer::TAGGABLE_ID, TaggingPeer::TAGGABLE_ID.' = '. sfSimpleBlogPostPeer::ID, Criteria::CUSTOM);
     $this->tags = TagPeer::getPopulars($c);
   }
+
+  public function executeMainNavigation()
+  {
+    $this->pages = sfSimpleBlogPageQuery::create()->filterByIsPublished(true)->find();
+  }
 }
