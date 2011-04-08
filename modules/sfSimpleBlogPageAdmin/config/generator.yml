@@ -21,8 +21,8 @@ generator:
         display: [name, is_published]
       form:    ~
       edit:
-        title: Edit %%name%%
+        title: Edit "%%name%%"
         display: [name, content, is_published]
-      new:     
+      new:
         title: New Page
         display: [name, content, is_published]
