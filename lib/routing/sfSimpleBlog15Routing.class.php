@@ -12,6 +12,7 @@ class sfSimpleBlog15Routing
     if (sfConfig::get('app_sfSimpleBlog_use_date_in_url', false))
     {
       $r->prependRoute('sf_simple_blog_show', new sfRoute('/:year/:month/:day/:stripped_title', array('module'=>'sfSimpleBlog', 'action'=>'show')));
+      $r->prependRoute('sf_simple_blog_comments_post_feed', new sfRoute('/:year/:month/:day/:stripped_title/comments', array('module' => 'sfSimpleBlog', 'action' => 'commentsForPostFeed')));
     }
     else
     {

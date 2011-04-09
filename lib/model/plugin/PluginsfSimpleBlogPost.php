@@ -44,9 +44,19 @@ class PluginsfSimpleBlogPost extends BasesfSimpleBlogPost {
     return $this->getsfGuardUser($con);
   }
 
+  public function getAuthorName()
+  {
+    return $this->getAuthor()->getProfile()->getFullName();
+  }
+  
   public function getAuthorEmail()
   {
     return $this->getAuthor()->getProfile()->getEmail();
+  }
+
+  public function getAuthorWebsite()
+  {
+    return $this->getAuthor()->getProfile()->getWebsite();
   }
 
   public function setAuthor(sfGuardUser $v = null)
