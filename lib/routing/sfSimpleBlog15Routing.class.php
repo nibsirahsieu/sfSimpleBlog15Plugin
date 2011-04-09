@@ -6,7 +6,7 @@ class sfSimpleBlog15Routing
     $r = $event->getSubject();
 
     // preprend our routes
-    $r->prependRoute('sf_simple_blog_search', new sfRoute('/search', array('module' => 'sfSimpleBlog', 'action' => 'search')));
+    $r->prependRoute('sf_simple_blog_show_page', new sfRoute('/:page_title', array('module' => 'sfSimpleBlog', 'action' => 'page')));
     $r->prependRoute('sf_simple_blog_posts_feed', new sfRoute('/:format/posts', array('module' => 'sfSimpleBlog', 'action' => 'postsFeed', 'format' => 'atom1')));
     $r->prependRoute('sf_simple_blog_comments_feed', new sfRoute('/:format/comments', array('module' => 'sfSimpleBlog', 'action' => 'commentsFeed', 'format' => 'atom1')));
     if (sfConfig::get('app_sfSimpleBlog_use_date_in_url', false))
@@ -19,8 +19,7 @@ class sfSimpleBlog15Routing
     }
     $r->prependRoute('sf_simple_blog_show_by_tag', new sfRoute('/tag/:tag', array('module' => 'sfSimpleBlog', 'action' => 'showByTag')));
     $r->prependRoute('sf_simple_blog_show_by_category', new sfRoute('/category/:category', array('module' => 'sfSimpleBlog', 'action' => 'showByCategory')));
-
-    $r->prependRoute('sf_simple_blog_show_page', new sfRoute('/:page_title', array('module' => 'sfSimpleBlog', 'action' => 'page')));
+    $r->prependRoute('sf_simple_blog_search', new sfRoute('/search', array('module' => 'sfSimpleBlog', 'action' => 'search')));
   }
   
   static public function addRouteForPostAdmin(sfEvent $event)
