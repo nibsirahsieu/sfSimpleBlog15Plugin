@@ -59,7 +59,7 @@ class BasesfSimpleBlogActions extends sfActions
       array(
         'format'      => $request->getParameter('format', 'atom1'),
         'title'       => __('Posts from %1%', array('%1%' => sfConfig::get('app_sfSimpleBlog_title', ''))),
-        'link'        => $this->getController()->genUrl('sfSimpleBlog/index'),
+        'link'        => $this->getController()->genUrl('sfSimpleBlog/index', true),
         'methods'     => array(
                           'authorEmail' => 'getAuthorEmail',
                           'authorName'  => 'getAuthorName',

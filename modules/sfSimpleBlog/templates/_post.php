@@ -26,15 +26,15 @@
   <?php $shareOn = sfConfig::get('app_sfSimpleBlog_share_on', false) ?>
   <?php if ($shareOn): ?>
     <?php $url = url_for(sfSimpleBlogTools::generatePostUri($post), true) ?>
-    <div class="sharing">
-      <strong>Share this</strong>
-      <div class="social-button">
+    <div id="social_bookmark">
+      <h3>Share this post</h3>
+      <ul>
       <?php if ($shareOn === 'all'): ?>
         <?php echo link_to_all_social_bookmarking($url, $post->getTitle()) ?>
       <?php else: ?>
         <?php echo link_to_social_bookmarking($shareOn, $url, $post->getTitle()) ?>
       <?php endif; ?>
-      </div>
+      </ul>
     </div>
   <?php endif; ?>
 

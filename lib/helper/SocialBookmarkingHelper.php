@@ -36,31 +36,31 @@ use_helper('Url');
  * 
  * @param   string   $url - Url which should be added 
  * @param   string   $title - Title which describes the content of the page
- * @param   string   $imgtitle - Text which is shown on image hover
+ * @param   string   $name - Text which is shown on image hover
  * @return  string   Linked icon
  * @see     link_to, image_tag
  */
-function link_to_delicious($url, $title=null, $imgtitle='Share on del.icio.us')
+function link_to_delicious($url, $title, $name)
 {
   $title = urlencode($title);
   $url = urlencode($url);
 
-  return link_to(image_tag('/sfSocialBookmarkingPlugin/images/delicious.gif','title='.$imgtitle), 'http://del.icio.us/post?url='.$url.'&title='.$title);
+  return link_to($name, 'http://del.icio.us/post?url='.$url.'&title='.$title, array('class' => $name, 'title' => 'Share on delicious'));
 }
 
 /**
  * Builds a link to add url to Technorati.
  * 
  * @param   string   $url - Url which should be added 
- * @param   string   $imgtitle - Text which is shown on image hover
+ * @param   string   $name - Text which is shown on image hover
  * @return  string   Linked icon
  * @see     link_to, image_tag
  */
-function link_to_technorati($url, $imgtitle='Share on Technorati')
+function link_to_technorati($url, $name)
 {
   $url = urlencode($url);
 
-  return link_to(image_tag('/sfSocialBookmarkingPlugin/images/technorati.gif','title='.$imgtitle), 'http://technorati.com/faves/?add='.$url);
+  return link_to($name, 'http://technorati.com/faves/?add='.$url, array('class' => $name, 'title' => 'Share on technorati'));
 }
 
 /**
@@ -68,16 +68,16 @@ function link_to_technorati($url, $imgtitle='Share on Technorati')
  * 
  * @param   string   $url - Url which should be added 
  * @param   string   $title - Title which describes the content of the page
- * @param   string   $imgtitle - Text which is shown on image hover
+ * @param   string   $name - Text which is shown on image hover
  * @return  string   Linked icon
  * @see     link_to, image_tag
  */
-function link_to_furl($url, $title=null, $imgtitle='Share on Furl')
+function link_to_furl($url, $title, $name)
 {
   $title = urlencode($title);
   $url = urlencode($url);
 
-  return link_to(image_tag('/sfSocialBookmarkingPlugin/images/furl.gif','title='.$imgtitle), 'http://www.furl.net/storeIt.jsp?t='.$title.'&u='.$url);
+  return link_to($name, 'http://www.furl.net/storeIt.jsp?t='.$title.'&u='.$url, array('class' => $name, 'title' => 'Share on furl'));
 }
 
 /**
@@ -85,16 +85,16 @@ function link_to_furl($url, $title=null, $imgtitle='Share on Furl')
  * 
  * @param   string   $url - Url which should be added 
  * @param   string   $title - Title which describes the content of the page
- * @param   string   $imgtitle - Text which is shown on image hover
+ * @param   string   $name - Text which is shown on image hover
  * @return  string   Linked icon
  * @see     link_to, image_tag
  */
-function link_to_yahoo_myweb($url, $title=null, $imgtitle='Share on Yahoo! My Web')
+function link_to_yahoo_myweb($url, $title, $name)
 {
   $title = urlencode($title);
   $url = urlencode($url);
 
-  return link_to(image_tag('/sfSocialBookmarkingPlugin/images/yahoo_myweb.gif','title='.$imgtitle), 'http://myweb2.search.yahoo.com/myresults/bookmarklet?u='.$url.'&t='.$title);
+  return link_to($name, 'http://myweb2.search.yahoo.com/myresults/bookmarklet?u='.$url.'&t='.$title, array('class' => $name, 'title' => 'Share on yahoo myweb'));
 }
 
 /**
@@ -102,16 +102,16 @@ function link_to_yahoo_myweb($url, $title=null, $imgtitle='Share on Yahoo! My We
  * 
  * @param   string   $url - Url which should be added 
  * @param   string   $title - Title which describes the content of the page
- * @param   string   $imgtitle - Text which is shown on image hover
+ * @param   string   $name - Text which is shown on image hover
  * @return  string   Linked icon
  * @see     link_to, image_tag
  */
-function link_to_google_bookmarks($url, $title=null, $imgtitle='Share on Google Bookmarks')
+function link_to_google_bookmarks($url, $title, $name)
 {
   $title = urlencode($title);
   $url = urlencode($url);
 
-  return link_to(image_tag('/sfSocialBookmarkingPlugin/images/google_bmarks.gif','title='.$imgtitle), 'http://www.google.com/bookmarks/mark?op=edit&bkmk='.$url.'&title='.$title);
+  return link_to($name, 'http://www.google.com/bookmarks/mark?op=edit&bkmk='.$url.'&title='.$title, array('class' => $name, 'title' => 'Share on google bookmark'));
 }
 
 /**
@@ -119,16 +119,16 @@ function link_to_google_bookmarks($url, $title=null, $imgtitle='Share on Google 
  * 
  * @param   string   $url - Url which should be added 
  * @param   string   $title - Title which describes the content of the page
- * @param   string   $imgtitle - Text which is shown on image hover
+ * @param   string   $name - Text which is shown on image hover
  * @return  string   Linked icon
  * @see     link_to, image_tag
  */
-function link_to_blinklist($url, $title=null, $imgtitle='Share on Blinklist')
+function link_to_blinklist($url, $title, $name)
 {
   $title = urlencode($title);
   $url = urlencode($url);
 
-  return link_to(image_tag('/sfSocialBookmarkingPlugin/images/blinklist.gif','title='.$imgtitle), 'http://blinklist.com/index.php?Action=Blink/addblink.php&Url='.$url.'&Title='.$title);
+  return link_to($name, 'http://blinklist.com/index.php?Action=Blink/addblink.php&Url='.$url.'&Title='.$title, array('class' => $name, 'title' => 'Share on blinklist'));
 }
 
 /**
@@ -136,16 +136,16 @@ function link_to_blinklist($url, $title=null, $imgtitle='Share on Blinklist')
  * 
  * @param   string   $url - Url which should be added 
  * @param   string   $title - Title which describes the content of the page
- * @param   string   $imgtitle - Text which is shown on image hover
+ * @param   string   $name - Text which is shown on image hover
  * @return  string   Linked icon
  * @see     link_to, image_tag
  */
-function link_to_magnolia($url, $title=null, $imgtitle='Share on ma.gnolia')
+function link_to_magnolia($url, $title, $name)
 {
   $title = urlencode($title);
   $url = urlencode($url);
 
-  return link_to(image_tag('/sfSocialBookmarkingPlugin/images/magnolia.gif','title='.$imgtitle), 'http://ma.gnolia.com/bookmarklet/add?url='.$url.'&title='.$title);
+  return link_to($name, 'http://ma.gnolia.com/bookmarklet/add?url='.$url.'&title='.$title, array('class' => $name, 'title' => 'Share on magnolia'));
 }
 
 /**
@@ -153,16 +153,16 @@ function link_to_magnolia($url, $title=null, $imgtitle='Share on ma.gnolia')
  * 
  * @param   string   $url - Url which should be added 
  * @param   string   $title - Title which describes the content of the page
- * @param   string   $imgtitle - Text which is shown on image hover
+ * @param   string   $name - Text which is shown on image hover
  * @return  string   Linked icon
  * @see     link_to, image_tag
  */
-function link_to_windows_live($url, $title=null, $imgtitle='Share on Windows Live')
+function link_to_windows_live($url, $title, $name)
 {
   $title = urlencode($title);
   $url = urlencode($url);
 
-  return link_to(image_tag('/sfSocialBookmarkingPlugin/images/windows_live.gif','title='.$imgtitle), 'https://favorites.live.com/quickadd.aspx?marklet=1&mkt=en-us&url='.$url.'&title='.$title.'&top=1');
+  return link_to($name, 'https://favorites.live.com/quickadd.aspx?marklet=1&mkt=en-us&url='.$url.'&title='.$title.'&top=1', array('class' => $name, 'title' => 'Share on window live'));
 }
 
 /**
@@ -170,16 +170,16 @@ function link_to_windows_live($url, $title=null, $imgtitle='Share on Windows Liv
  * 
  * @param   string   $url - Url which should be added 
  * @param   string   $title - Title which describes the content of the page
- * @param   string   $imgtitle - Text which is shown on image hover
+ * @param   string   $name - Text which is shown on image hover
  * @return  string   Linked icon
  * @see     link_to, image_tag
  */
-function link_to_digg($url, $title=null, $imgtitle='Share on Digg')
+function link_to_digg($url, $title, $name)
 {
   $title = urlencode($title);
   $url = urlencode($url);
 
-  return link_to(image_tag('/sfSocialBookmarkingPlugin/images/digg.gif','title='.$imgtitle), 'http://digg.com/submit?phase=2&url='.$url.'&title='.$title);
+  return link_to($name, 'http://digg.com/submit?phase=2&url='.$url.'&title='.$title, array('class' => $name, 'title' => 'Share on digg'));
 }
 
 /**
@@ -187,16 +187,16 @@ function link_to_digg($url, $title=null, $imgtitle='Share on Digg')
  * 
  * @param   string   $url - Url which should be added 
  * @param   string   $title - Title which describes the content of the page
- * @param   string   $imgtitle - Text which is shown on image hover
+ * @param   string   $name - Text which is shown on image hover
  * @return  string   Linked icon
  * @see     link_to, image_tag
  */
-function link_to_netscape($url, $title=null, $imgtitle='Share on Netscape')
+function link_to_netscape($url, $title, $name)
 {
   $title = urlencode($title);
   $url = urlencode($url);
 
-  return link_to(image_tag('/sfSocialBookmarkingPlugin/images/netscape.gif','title='.$imgtitle), 'http://www.netscape.com/submit/?U='.$url.'&T='.$title);
+  return link_to($name, 'http://www.netscape.com/submit/?U='.$url.'&T='.$title, array('class' => $name, 'title' => 'Share on netscape'));
 }
 
 /**
@@ -204,16 +204,16 @@ function link_to_netscape($url, $title=null, $imgtitle='Share on Netscape')
  * 
  * @param   string   $url - Url which should be added 
  * @param   string   $title - Title which describes the content of the page
- * @param   string   $imgtitle - Text which is shown on image hover
+ * @param   string   $name - Text which is shown on image hover
  * @return  string   Linked icon
  * @see     link_to, image_tag
  */
-function link_to_stumbleupon($url, $title=null, $imgtitle='Share on StumbleUpon')
+function link_to_stumbleupon($url, $title, $name)
 {
   $title = urlencode($title);
   $url = urlencode($url);
 
-  return link_to(image_tag('/sfSocialBookmarkingPlugin/images/stumbleupon.gif','title='.$imgtitle), 'http://www.stumbleupon.com/submit?url='.$url.'&title='.$title);
+  return link_to($name, 'http://www.stumbleupon.com/submit?url='.$url.'&title='.$title, array('class' => $name, 'title' => 'Share on stumbleupon'));
 }
 
 /**
@@ -224,12 +224,12 @@ function link_to_stumbleupon($url, $title=null, $imgtitle='Share on StumbleUpon'
  * @return  string   Linked icon
  * @see     link_to, image_tag
  */
-function link_to_newsvine($url, $title=null, $imgtitle='Share on Newsvine')
+function link_to_newsvine($url, $title, $name)
 {
   $title = urlencode($title);
   $url = urlencode($url);
 
-  return link_to(image_tag('/sfSocialBookmarkingPlugin/images/newsvine.gif','title='.$imgtitle), 'http://www.newsvine.com/_wine/save?u='.$url.'&h='.$title);
+  return link_to($name, 'http://www.newsvine.com/_wine/save?u='.$url.'&h='.$title, array('class' => $name, 'title' => 'Share on newsvine'));
 }
 
 /**
@@ -237,16 +237,16 @@ function link_to_newsvine($url, $title=null, $imgtitle='Share on Newsvine')
  * 
  * @param   string   $url - Url which should be added 
  * @param   string   $title - Title which describes the content of the page
- * @param   string   $imgtitle - Text which is shown on image hover
+ * @param   string   $name - Text which is shown on image hover
  * @return  string   Linked icon
  * @see     link_to, image_tag
  */
-function link_to_reddit($url, $title=null, $imgtitle='Share on Reddit')
+function link_to_reddit($url, $title, $name)
 {
   $title = urlencode($title);
   $url = urlencode($url);
 
-  return link_to(image_tag('/sfSocialBookmarkingPlugin/images/reddit.gif','title='.$imgtitle), 'http://reddit.com/submit?url='.$url.'&title='.$title);
+  return link_to($name, 'http://reddit.com/submit?url='.$url.'&title='.$title, array('class' => $name, 'title' => 'Share on reddit'));
 }
 
 /**
@@ -254,16 +254,16 @@ function link_to_reddit($url, $title=null, $imgtitle='Share on Reddit')
  * 
  * @param   string   $url - Url which should be added 
  * @param   string   $title - Title which describes the content of the page
- * @param   string   $imgtitle - Text which is shown on image hover
+ * @param   string   $name - Text which is shown on image hover
  * @return  string   Linked icon
  * @see     link_to, image_tag
  */
-function link_to_tailrank($url, $title=null, $imgtitle='Share on Tailrank')
+function link_to_tailrank($url, $title, $name)
 {
   $title = urlencode($title);
   $url = urlencode($url);
 
-  return link_to(image_tag('/sfSocialBookmarkingPlugin/images/tailrank.gif','title='.$imgtitle), 'http://tailrank.com/share/?link_href='.$url.'&title='.$title);
+  return link_to($name, 'http://tailrank.com/share/?link_href='.$url.'&title='.$title, array('class' => $name, 'title' => 'Share on Tailrank'));
 }
 
 /**
@@ -271,47 +271,47 @@ function link_to_tailrank($url, $title=null, $imgtitle='Share on Tailrank')
  * 
  * @param   string   $url - Url which should be added 
  * @param   string   $title - Title which describes the content of the page
- * @param   string   $imgtitle - Text which is shown on image hover
+ * @param   string   $name - Text which is shown on image hover
  * @return  string   Linked icon
  * @see     link_to, image_tag
  */
-function link_to_spurl($url, $title=null, $imgtitle='Share on Spurl')
+function link_to_spurl($url, $title, $name)
 {
   $title = urlencode($title);
   $url = urlencode($url);
 
-  return link_to(image_tag('/sfSocialBookmarkingPlugin/images/spurl.gif','title='.$imgtitle), 'http://www.spurl.net/spurl.php?title='.$title.'&url='.$url);
+  return link_to($name, 'http://www.spurl.net/spurl.php?title='.$title.'&url='.$url, array('class' => $name, 'title' => 'Share on spurl'));
 }
 
 /**
  * Builds a link to add url to Yigg.
  * 
  * @param   string   $url - Url which should be added 
- * @param   string   $imgtitle - Text which is shown on image hover
+ * @param   string   $name - Text which is shown on image hover
  * @return  string   Linked icon
  * @see     link_to, image_tag
  */
-function link_to_yigg($url, $imgtitle='Share on Yigg')
+function link_to_yigg($url, $name)
 {
   $url = urlencode($url);
 
-  return link_to(image_tag('/sfSocialBookmarkingPlugin/images/yigg.gif','title='.$imgtitle), 'http://yigg.de/neu?exturl='.$url);
+  return link_to($name, 'http://yigg.de/neu?exturl='.$url, array('class' => $name, 'title' => "Share on yigg"));
 }
 
-function link_to_twitter($url, $title, $imgtitle = 'Share on Twitter')
+function link_to_twitter($url, $title, $name)
 {
   $url = urlencode($url);
   $title = urlencode($title);
   
-  return link_to(image_tag('/sfSocialBookmarkingPlugin/images/twitter.png', 'title='.$imgtitle), 'http://twitter.com/home?status='.$url.'+'.$title);
+  return link_to($name, 'http://twitter.com/home?status='.$url.'+'.$title, array('class' => $name, 'title' => 'Share on twitter'));
 }
 
-function link_to_facebook($url, $title, $imgtitle = 'Share on Facebook')
+function link_to_facebook($url, $title, $name)
 {
   $url = urlencode($url);
   $title = urlencode($title);
 
-  return link_to(image_tag('/sfSocialBookmarkingPlugin/images/facebook.png', 'title='.$imgtitle), 'http://www.facebook.com/share.php?u='.$url.'&title='.$title);
+  return link_to($name, 'http://www.facebook.com/share.php?u='.$url.'&title='.$title, array('class' => $name, 'title' => 'Share on facebook'));
 }
 
 /**
@@ -322,7 +322,7 @@ function link_to_facebook($url, $title, $imgtitle = 'Share on Facebook')
  * @return  string   Linked icons
  * @see     link_to_delicious, link_to_technorati, link_to_furl, link_to_yahoo_myweb, link_to_google_bookmarks, link_to_blinklist, link_to_magnolia, link_to_windows_live, link_to_digg, link_to_netscape, link_to_stumbleupon, link_to_newsvine, link_to_reddit, link_to_tailrank, link_to_spurl, link_to_yigg
  */
-function link_to_all_social_bookmarking($url, $title=null)
+function link_to_all_social_bookmarking($url, $title)
 {
   $links = link_to_twitter($url, $title);
   $links .= ' '.link_to_facebook($url, $title);
@@ -356,7 +356,7 @@ function link_to_social_bookmarking($social_bookmarking, $url, $title = null)
   foreach ($social_bookmarking as $key => $v)
   {
     $func = 'link_to_'.$v;
-    $links .= $key == 0 ? call_user_func($func, $url, $title) : ' '.call_user_func($func, $url, $title);
+    $links .= '<li>'.call_user_func($func, $url, $title, $v).'</li>';
   }
   return $links;
 }
