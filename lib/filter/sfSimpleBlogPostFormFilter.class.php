@@ -12,7 +12,8 @@ class sfSimpleBlogPostFormFilter extends BasesfSimpleBlogPostFormFilter
   public function configure()
   {
     $this->widgetSchema['sf_simple_blog_post_category_list']->setLabel('Category');
-    $this->widgetSchema['is_published']->setLabel('Moderated');
+    $this->widgetSchema['is_published']->setLabel('Published');
+
     $this->getWidgetSchema()->setFormFormatterName('list');
   }
 }
