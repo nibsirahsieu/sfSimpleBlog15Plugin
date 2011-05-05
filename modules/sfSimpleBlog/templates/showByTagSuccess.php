@@ -2,7 +2,7 @@
 
 <?php if(sfConfig::get('app_sfSimpleBlog_use_feeds', true)): ?>
   <?php slot('auto_discovery_link_tag') ?>
-    <?php echo auto_discovery_link_tag('rss', 'sfSimpleBlog/postsForTagFeed?tag='.$sf_params->get('tag'), array('title' => __('Posts tagged "%1%" from %2%', array('%1%' => $sf_params->get('tag'), '%2%' => sfConfig::get('app_sfSimpleBlog_title', 'How is life on earth?'))))) ?>
+    <?php echo auto_discovery_link_tag('rss', 'sfSimpleBlog/postsForTagFeed?tag='.$sf_params->get('tag').'&format=rss', array('title' => __('Posts tagged "%1%" from %2%', array('%1%' => $sf_params->get('tag'), '%2%' => sfConfig::get('app_sfSimpleBlog_title', 'How is life on earth?'))))) ?>
   <?php end_slot() ?>
 <?php endif; ?>
 

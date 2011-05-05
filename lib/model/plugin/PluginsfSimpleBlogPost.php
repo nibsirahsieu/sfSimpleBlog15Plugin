@@ -118,11 +118,6 @@ class PluginsfSimpleBlogPost extends BasesfSimpleBlogPost {
     return $categories;
   }
 
-  public function getFeedLink()
-  {
-    return sfSimpleBlogTools::generatePostUri($this);
-  }
-
   public function getPreviousPost()
   {
     return sfSimpleBlogPostQuery::create()
@@ -136,6 +131,18 @@ class PluginsfSimpleBlogPost extends BasesfSimpleBlogPost {
         ->nextPublished($this->getInternalPublishedAt())
         ->findOne();
   }
+
+  /* RSS Feed*/
+  public function getFeedUniqueId()
+  {
+    return 'article '.$this->getId().' at '.$_SERVER['HTTP_HOST'];
+  }
+
+  public function getFeedLink()
+  {
+    return sfSimpleBlogTools::generatePostUri($this);
+  }
+  
 } // sfSimpleBlogPost
 
 sfPropelBehavior::add('sfSimpleBlogPost', array('sfPropelActAsTaggableBehavior'));

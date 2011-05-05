@@ -45,31 +45,6 @@ class BasesfSimpleBlogActions extends sfActions
     $this->forward404Unless($this->post);
   }
 
-  public function executePostsFeed(sfWebRequest $request)
-  {
-    sfApplicationConfiguration::getActive()->loadHelpers(array('I18N'));
-    $posts = sfSimpleBlogPostQuery::create()
-      ->recent()
-      ->published()
-      ->limit($request->getParameter('nb', sfConfig::get('app_sfSimpleBlog_feed_count', 5)))
-      ->find();
-
-    $this->feed = sfFeedPeer::createFromObjects(
-      $posts,
-      array(
-        'format'      => $request->getParameter('format', 'atom1'),
-        'title'       => __('Posts from %1%', array('%1%' => sfConfig::get('app_sfSimpleBlog_title', ''))),
-        'link'        => $this->getController()->genUrl('sfSimpleBlog/index', true),
-        'methods'     => array(
-                          'authorEmail' => 'getAuthorEmail',
-                          'authorName'  => 'getAuthorName',
-                          'description' => 'getExtract',
-                         )
-      )
-    );
-    $this->setTemplate('feed');
-  }
-
   public function executeShowByTag(sfWebRequest $request)
   {
     $tag = $request->getParameter('tag');
@@ -104,6 +79,31 @@ class BasesfSimpleBlogActions extends sfActions
     $this->forward404Unless($this->page = sfSimpleBlogPageQuery::create()->filterByStrippedTitle($request->getParameter('page_title'))->findOne());
   }
 
+  public function executePostsFeed(sfWebRequest $request)
+  {
+    sfApplicationConfiguration::getActive()->loadHelpers(array('I18N'));
+    $posts = sfSimpleBlogPostQuery::create()
+      ->recent()
+      ->published()
+      ->limit($request->getParameter('nb', sfConfig::get('app_sfSimpleBlog_feed_count', 5)))
+      ->find();
+
+    $this->feed = sfFeedPeer::createFromObjects(
+      $posts,
+      array(
+        'format'      => $request->getParameter('format', 'atom1'),
+        'title'       => __('Posts from %1%', array('%1%' => sfConfig::get('app_sfSimpleBlog_title', ''))),
+        'link'        => $this->getController()->genUrl('sfSimpleBlog/index', true),
+        'methods'     => array(
+                          'authorEmail' => 'getAuthorEmail',
+                          'authorName'  => 'getAuthorName',
+                          'description' => 'getExtract',
+                         )
+      )
+    );
+    $this->setTemplate('feed');
+  }
+
   public function executeCommentsForPostFeed(sfWebRequest $request)
   {
     sfApplicationConfiguration::getActive()->loadHelpers(array('I18N'));
@@ -113,7 +113,7 @@ class BasesfSimpleBlogActions extends sfActions
     );
     $this->forward404Unless($post);
     $comments = $post->getApprovedComments($request->getParameter('nb', sfConfig::get('app_sfSimpleBlog_feed_count', 5)));
-    
+
     $this->feed = sfFeedPeer::createFromObjects(
       $comments,
       array(
@@ -127,6 +127,30 @@ class BasesfSimpleBlogActions extends sfActions
                           'link'        => 'getLink',
                           'description' => 'getContent'
                         )
+      )
+    );
+    $this->setTemplate('feed');
+  }
+
+  public function executePostsForTagFeed(sfWebRequest $request)
+  {
+    sfApplicationConfiguration::getActive()->loadHelpers(array('I18N'));
+    $tag = $request->getParameter('tag');
+    $this->forward404Unless($tag);
+    $criteria = TagPeer::getTaggedWithCriteria('sfSimpleBlogPost', array($tag));
+    $posts = sfSimpleBlogPostQuery::create(null, $criteria)
+      ->recent()
+      ->limit($request->getParameter('nb', sfConfig::get('app_sfSimpleBlog_feed_count', 5)))
+      ->find();
+
+      $this->feed = sfFeedPeer::createFromObjects(
+      $posts,
+      array(
+        'format'      => $request->getParameter('format', 'atom1'),
+        'title'       => __('Posts tagged "%1%" from %2%', array('%1%' => $tag, '%2%' => sfConfig::get('app_sfSimpleBlog_title', ''))),
+        'link'        => $this->getController()->genUrl('sfSimpleBlog/showByTag?tag='.$tag),
+        'authorName'  => sfConfig::get('app_sfSimpleBlog_author', ''),
+        'methods'     => array('authorEmail' => '')
       )
     );
     $this->setTemplate('feed');
