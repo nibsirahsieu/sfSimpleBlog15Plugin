@@ -17,6 +17,6 @@
  *
  * @package    propel.generator.plugins.sfSimpleBlog15Plugin.lib.model
  */
-class sfSimpleBlogCategoryPeer extends BasesfSimpleBlogCategoryPeer {
+class sfSimpleBlogCategoryPeer extends PluginsfSimpleBlogCategoryPeer {
 
 } // sfSimpleBlogCategoryPeer

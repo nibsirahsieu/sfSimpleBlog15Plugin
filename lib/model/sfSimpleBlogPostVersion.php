@@ -17,6 +17,6 @@
  *
  * @package    propel.generator.plugins.sfSimpleBlog15Plugin.lib.model
  */
-class sfSimpleBlogPostVersion extends BasesfSimpleBlogPostVersion {
+class sfSimpleBlogPostVersion extends PluginsfSimpleBlogPostVersion {
 
 } // sfSimpleBlogPostVersion

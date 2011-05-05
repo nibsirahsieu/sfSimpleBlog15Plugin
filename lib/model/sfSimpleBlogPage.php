@@ -17,6 +17,6 @@
  *
  * @package    propel.generator.plugins.sfSimpleBlog15Plugin.lib.model
  */
-class sfSimpleBlogPage extends BasesfSimpleBlogPage {
+class sfSimpleBlogPage extends PluginsfSimpleBlogPage {
 
 } // sfSimpleBlogPage

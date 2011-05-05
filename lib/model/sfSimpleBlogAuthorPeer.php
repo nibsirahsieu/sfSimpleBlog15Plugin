@@ -17,6 +17,6 @@
  *
  * @package    propel.generator.plugins.sfSimpleBlog15Plugin.lib.model
  */
-class sfSimpleBlogAuthorPeer extends BasesfSimpleBlogAuthorPeer {
+class sfSimpleBlogAuthorPeer extends PluginsfSimpleBlogAuthorPeer {
 
 } // sfSimpleBlogAuthorPeer

@@ -17,6 +17,6 @@
  *
  * @package    propel.generator.plugins.sfSimpleBlog15Plugin.lib.model
  */
-class sfSimpleBlogAuthorQuery extends BasesfSimpleBlogAuthorQuery {
+class sfSimpleBlogAuthorQuery extends PluginsfSimpleBlogAuthorQuery {
 
 } // sfSimpleBlogAuthorQuery
