@@ -1,6 +1,6 @@
 # sfSimpleBlog15Plugin #
 
-The `sfSimpleBlog15Plugin` is a symfony plugin to create a simple blog. This plugin use sfPropel15Plugin (1.6 branch) as an ORM, and it is based on sfSimpleBlogPlugin.
+The `sfSimpleBlog15Plugin` is a symfony plugin to create a simple blog. This plugin use sfPropel15Plugin (1.6 branch) as an ORM, and it is based on [sfSimpleBlogPlugin](http://www.symfony-project.org/plugins/sfSimpleBlogPlugin).
 
 ## Installation ##
   * Install the plugin
