@@ -12,6 +12,8 @@ class sfWidgetFormTextareaTinyMCEPost extends sfWidgetFormTextareaTinyMCE
             theme_advanced_disable  : "anchor,cleanup,help",
             extended_valid_elements : "textarea[cols|rows|disabled|name|readonly|class]",
             remove_linebreaks       : false,
+            remove_script_host      : false,
+            relative_urls           : false,
             file_browser_callback   : "sfAssetsLibrary.fileBrowserCallBack"'
           );
   }
