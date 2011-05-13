@@ -1,0 +1,20 @@
+html, body, div, span, p, a, img, ol, ul, li,	fieldset, form, label, legend,	table, caption, tbody, tfoot, thead, tr, th, td {margin: 0;	padding: 0;	border: 0;	outline: 0;	font-size: 100%;	vertical-align: baseline;background: transparent;}
+body {line-height: 1;}
+:focus {outline: 0;}
+input {border: none; background: #fff; font-family: Arial, Helvetica, sans-serif}
+p, form {padding: 0; margin: 0}
+body{font-size:12px;font-family: Arial, Helvetica, sans-serif;color:#000;background: none repeat-x #F9F9F9;line-height:16px;padding-top: 30px;}
+a, label {color: #464646;}
+#backtoblog {background: -moz-linear-gradient(center bottom , #D7D7D7, #E4E4E4) repeat scroll 0 0 transparent;border-bottom: 1px solid #C6C6C6;height: 30px;left: 0;position: absolute;top: 0;width: 100%;}
+#backtoblog a {display: block;padding: 8px 0 0 15px;text-decoration: none;float: left;}
+#logincontainer {width: 380px;margin: 70px auto 20px auto;text-align: center;text-shadow: 1px 1px 1px #fff;}
+#loginbox {width: 298px;margin: 0 auto;padding: 20px;-moz-box-shadow: 1px 1px 8px #999;box-shadow: 1px 1px 8px #999;-webkit-box-shadow: 1px 1px 8px #999;-moz-border-radius: 10px;border-radius: 10px;-webkit-border-radius: 10px;font-weight: 700;background: none repeat scroll 0 0 #FFFFFF;border: 1px solid #E5E5E5;}
+label {float: left; font-size: 13px; font-weight: normal;}
+.inputcontainer {margin-top: 4px; width: 278px; border: 1px solid #fff; padding: 3px 8px; background: #fff none repeat-x bottom; -moz-border-radius: 5px; border-radius: 5px; -webkit-border-radius: 5px; overflow: auto; margin-bottom: 8px; -moz-box-shadow: 1px 1px 8px #aaa; box-shadow: 1px 1px 8px #aaa; -webkit-box-shadow: 1px 1px 8px #aaa}
+.inputcontainer input {float: left; margin-right: 5px; font-size: 20px; width: 92%;}
+.inputcontainer input.username {background-image: url('../images/icons/icon_username.png');background-repeat: no-repeat;background-position: 2px 50%;padding-left: 20px;}
+.inputcontainer input.password {background-image: url('../images/icons/icon_locked.png');background-repeat: no-repeat;background-position: 2px 50%;padding-left: 20px;}
+.inputrememberme {width: 278px; padding: 10px 0; text-align: left;}
+.inputcheck {margin: 2px 0 0 5px;}
+.loginsubmit {width: 298px; font-size: 20px; padding: 8px 0; -moz-border-radius: 5px; border-radius: 5px; -webkit-border-radius: 5px; text-shadow: 1px 1px 1px #ccc; font-weight: 700; -moz-box-shadow: 1px 1px 8px #999; box-shadow: 1px 1px 8px #999; -webkit-box-shadow: 1px 1px 8px #999; margin-bottom: 15px}
+.loginsubmit:hover {cursor: pointer; background: #999}

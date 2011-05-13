@@ -1,0 +1,62 @@
+h1, h2, h3, h4, h5, h6 {margin-bottom: 20px;}
+
+/*admin header*/
+#sf_admin_theme_header {background:url("../images/tray.gif") 0 0 repeat-x; font:85%/1.2 "tahoma",sans-serif;}
+#sf_admin_theme_header #logout {background:url("../images/tray-logout.gif") 0 50% no-repeat; text-transform:uppercase;}
+#sf_admin_theme_header a:hover, #sf_admin_theme_header a:active, #sf_admin_theme_header a:focus {color:#b4e3ff;}
+
+/*admin left navigation*/
+ul#admin_nav li a.heading, ul#admin_nav li a.expanded, ul#admin_nav li a.collapsed, ul.navigation li.selected {background: #a7a7a7 url(../images/bg_navigation_links.png) no-repeat top;}
+ul#admin_nav li a.collapsed:hover {background-position: 0 -40px;}
+ul#admin_nav li a.expanded {background-position: 0 -80px;}
+ul#admin_nav li a.expanded:hover {background-position: 0 -120px;}
+
+/*admin top menu*/
+#sf_admin_top_menu {background: url("../images/menu.gif") repeat-x scroll 0 0 transparent;}
+
+/*admin content container*/
+#sf_admin_container h1 {font-size: 23px;}
+#sf_admin_container table {width: 100%;}
+#sf_admin_container tr.even td {background-color: #E8F6FF;background-image: none;}
+#sf_admin_container th, #sf_admin_container th a, #sf_admin_container th a:hover {background-color: #0085CC;color: #FFFFFF;}
+#sf_admin_container .sf_admin_list_td_nb_comments {text-align: center;}
+#sf_admin_container span.comments-count {
+  background-color: #21759B;
+  font-weight: bold;
+  height: 1.7em;
+  line-height: 1.70em;
+  min-width: .7em;
+  padding: 0 6px;
+  display: inline-block;
+  cursor: pointer;
+  -moz-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  color: #FFFFFF;
+}
+#sf_admin_container a:hover span.comments-count {background-color: #D54E21;}
+#sf_admin_container fieldset h2 {background: none repeat scroll 0 0 #C9E3F8;border: 1px solid #6AA6D6;}
+
+/*admin footer*/
+#sf_admin_theme_footer {
+  background: url(../images/bg_footer.png) repeat-x bottom;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  -moz-border-radius-bottomright: 10px;
+  -moz-border-radius-bottomleft: 10px;
+  -khtml-border-radius-bottomright: 10px;
+  -khtml-border-radius-bottomleft: 10px;
+  -webkit-border-radius-bottomright: 10px;
+  -webkit-border-radius-bottomleft: 10px;
+  text-shadow: 1px 1px 1px white;
+}
+
+/*others*/
+select {padding-top: 3px;padding-bottom: 3px;}
+
+input[type="submit"], input[type="reset"] {font-weight: bold;cursor:pointer;width:auto !important;}
+
+ul.previous-tags {margin-bottom: 10px;}
+
+.box textarea, .box input {width: 450px;}
