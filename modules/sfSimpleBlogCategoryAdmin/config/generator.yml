@@ -15,7 +15,7 @@ generator:
       actions: ~
       fields:  ~
       list:
-        title: Categories
+        title: Post Categories
         display: [=name, description]
       filter:
         class: false

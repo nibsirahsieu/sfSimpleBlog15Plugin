@@ -1,7 +1,8 @@
 <div class="sf_admin_list">
   <form action="<?php echo url_for('sfSimpleBlogPostAdmin/deleteVersions?id='.$sf_simple_blog_post->getId()) ?>" method="post">
-  <h2>Histories</h2>
-  <table width="100%">
+  <fieldset id="sf_fieldset_versioning">
+  <h2>Versioning</h2>
+  <table>
     <thead>
       <th id="sf_admin_list_batch_actions"><input id="sf_admin_list_batch_checkbox" type="checkbox" onclick="checkAll();" /></th>
       <th class="sf_admin_text">Version</th>
@@ -32,6 +33,7 @@
       </tr>
     </tfoot>
   </table>
+  </fieldset>
   <?php if (count($versions) > 0): ?>
     <?php $form = new BaseForm(); if ($form->isCSRFProtected()): ?>
       <input type="hidden" name="<?php echo $form->getCSRFFieldName() ?>" value="<?php echo $form->getCSRFToken() ?>" />
@@ -39,6 +41,7 @@
     <input type="submit" value="Delete Versions" />
   <?php endif; ?>
   </form>
+  
 </div>
 <script type="text/javascript">
 /* <![CDATA[ */

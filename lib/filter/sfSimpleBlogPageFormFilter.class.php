@@ -11,6 +11,5 @@ class sfSimpleBlogPageFormFilter extends BasesfSimpleBlogPageFormFilter
 {
   public function configure()
   {
-    $this->getWidgetSchema()->setFormFormatterName('list');
   }
 }
