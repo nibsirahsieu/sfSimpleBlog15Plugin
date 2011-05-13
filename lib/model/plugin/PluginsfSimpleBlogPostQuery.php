@@ -28,6 +28,11 @@ class PluginsfSimpleBlogPostQuery extends BasesfSimpleBlogPostQuery {
     return $this->filterByIsPublished(true);
   }
 
+  public function draft()
+  {
+    return $this->filterByIsPublished(false);
+  }
+
   public function previousPublished($publishedAt)
   {
     return $this->filterByInternalPublishedAt($publishedAt, Criteria::LESS_THAN)
