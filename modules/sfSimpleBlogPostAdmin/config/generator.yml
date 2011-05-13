@@ -38,6 +38,7 @@ generator:
         display:          [title, author_id, is_published, sf_simple_blog_post_category_list]
         
       form:
+        class: sfSimpleBlogPostFullForm
         fields:
           sf_simple_blog_post_category_list:
             widgetOptions: { expanded: true }
