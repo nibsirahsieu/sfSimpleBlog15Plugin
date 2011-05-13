@@ -1,0 +1,33 @@
+generator:
+  class: sfPropelGenerator
+  param:
+    model_class:           Tag
+    theme:                 admin15
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          sf_simple_blog_tag
+    with_propel_route:     1
+    
+    config:
+      actions: ~
+      fields:  ~
+      list:
+        title:        Post Tags
+        display:      [=name]
+        max_per_page: 10
+      filter:
+        display:      [name]
+        fields:
+          name:
+            widgetOptions:
+              with_empty: false
+              
+      form:    ~
+      edit:
+        title: Edit Tag "%%name%%"
+        display: [name]
+      new:
+        title: New Tag
+        display: [name]

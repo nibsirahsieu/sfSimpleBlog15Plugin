@@ -65,4 +65,16 @@ class sfSimpleBlog15Routing
       'requirements'         => array(),
     )));
   }
+
+  static public function addRouteForTagAdmin(sfEvent $event)
+  {
+    $event->getSubject()->prependRoute('sf_simple_blog_tag', new sfPropel15RouteCollection(array(
+      'name'                 => 'sf_simple_blog_tag',
+      'model'                => 'Tag',
+      'module'               => 'sfSimpleBlogTagAdmin',
+      'prefix_path'          => 'sf_simple_blog_tag',
+      'with_wildcard_routes' => true,
+      'requirements'         => array(),
+    )));
+  }
 }
