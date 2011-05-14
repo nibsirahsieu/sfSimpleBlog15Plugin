@@ -93,4 +93,24 @@
       <unique-column name="stripped_title" />
     </unique>
   </table>
+
+  <table name="sf_blog_link_category" phpName="sfSimpleBlogLinkCategory">
+    <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true" />
+    <column name="name" type="varchar" size="50" required="true" primaryString="true" />
+    <column name="description" type="longvarchar" />
+  </table>
+
+  <table name="sf_blog_link" phpName="sfSimpleBlogLink">
+    <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true" />
+    <column name="name" type="varchar" size="50" required="true" primaryString="true" />
+    <column name="uri" type="varchar" size="255" required="true" />
+    <column name="description" type="longvarchar" />
+    <column name="sf_blog_link_category_id" type="integer" required="true" />
+    <foreign-key foreignTable="sf_blog_link_category" onDelete="cascade">
+      <reference local="sf_blog_link_category_id" foreign="id" />
+    </foreign-key>
+    <unique>
+      <unique-column name="uri" />
+    </unique>
+  </table>
 </database>

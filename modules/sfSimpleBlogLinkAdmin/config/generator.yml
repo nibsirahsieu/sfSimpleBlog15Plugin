@@ -1,0 +1,29 @@
+generator:
+  class: sfPropelGenerator
+  param:
+    model_class:           sfSimpleBlogLink
+    theme:                 admin15
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          sf_simple_blog_link
+    with_propel_route:     1
+    
+    config:
+      actions: ~
+      fields:
+        sf_blog_link_category_id:     { label: Category }
+        sf_simple_blog_link_category: { label: Category }
+        uri:                          { label: Website Address }
+      list:
+        title: Links
+        display: [=name, uri, description, sf_simple_blog_link_category]
+        max_per_page: 10
+      filter:
+        class: false
+      form:    ~
+      edit:
+        title: Edit Link "%%uri%%"
+      new:
+        title: New Link

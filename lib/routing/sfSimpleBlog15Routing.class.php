@@ -77,4 +77,28 @@ class sfSimpleBlog15Routing
       'requirements'         => array(),
     )));
   }
+
+  static public function addRouteForLinkAdmin(sfEvent $event)
+  {
+    $event->getSubject()->prependRoute('sf_simple_blog_link', new sfPropel15RouteCollection(array(
+      'name'                 => 'sf_simple_blog_link',
+      'model'                => 'sfSimpleBlogLink',
+      'module'               => 'sfSimpleBlogLinkAdmin',
+      'prefix_path'          => 'sf_simple_blog_link',
+      'with_wildcard_routes' => true,
+      'requirements'         => array(),
+    )));
+  }
+
+  static public function addRouteForLinkCategoryAdmin(sfEvent $event)
+  {
+    $event->getSubject()->prependRoute('sf_simple_blog_link_category', new sfPropel15RouteCollection(array(
+      'name'                 => 'sf_simple_blog_link_category',
+      'model'                => 'sfSimpleBlogLinkCategory',
+      'module'               => 'sfSimpleBlogLinkCategoryAdmin',
+      'prefix_path'          => 'sf_simple_blog_link_category',
+      'with_wildcard_routes' => true,
+      'requirements'         => array(),
+    )));
+  }
 }

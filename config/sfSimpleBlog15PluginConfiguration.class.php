@@ -10,7 +10,7 @@ class sfSimpleBlog15PluginConfiguration extends sfPluginConfiguration
         $this->dispatcher->connect('routing.load_configuration', array('sfSimpleBlog15Routing', 'listenToRoutingLoadConfigurationEvent'));
       }
 
-      foreach (array('sfSimpleBlogPostAdmin', 'sfSimpleBlogCategoryAdmin', 'sfSimpleBlogPageAdmin', 'sfSimpleBlogTagAdmin') as $module)
+      foreach (array('sfSimpleBlogPostAdmin', 'sfSimpleBlogCategoryAdmin', 'sfSimpleBlogPageAdmin', 'sfSimpleBlogTagAdmin', 'sfSimpleBlogLinkAdmin', 'sfSimpleBlogLinkCategoryAdmin') as $module)
       {
         if (in_array($module, sfConfig::get('sf_enabled_modules')))
         {
