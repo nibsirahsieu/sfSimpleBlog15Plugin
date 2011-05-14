@@ -8,7 +8,7 @@ all:
     post_recent:           5          # number of posts to display in the recent sidebar widget
 
     feed_count:            5          # number of posts appearing in the RSS feed
-
+    sidebar:               [tags, recent_posts, recent_comments, feeds, links]
     comment_disable_after: 0
     share_on:
       - twitter
