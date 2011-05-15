@@ -47,7 +47,7 @@
                   &nbsp;|&nbsp;
                   <?php echo link_to(__('Edit'), 'sfNestedCommentAdmin/edit?id='.$recentComment->getId()) ?>
                   &nbsp;|&nbsp;
-                  <?php echo link_to(__('Delete'), 'sfNestedCommentAdmin/delete?id='.$recentComment->getId(), array('confirm' => __('Are you sure?'), 'post' => true)) ?>
+                  <?php echo link_to(__('Delete'), 'sfNestedCommentAdmin/delete?id='.$recentComment->getId(), array('confirm' => __('Are you sure?'), 'method' => "delete")) ?>
                 </div>
               </td>
             </tr>
@@ -90,7 +90,7 @@
                 <div>
                   <?php echo link_to(__('Edit'), 'sfSimpleBlogPostAdmin/edit?id='.$draft->getId()) ?>
                   &nbsp;|&nbsp;
-                  <?php echo link_to(__('Delete'), 'sfSimpleBlogPostAdmin/delete?id='.$draft->getId(), array('confirm' => __('Are you sure?'), 'post' => true)) ?>
+                  <?php echo link_to(__('Delete'), 'sfSimpleBlogPostAdmin/delete?id='.$draft->getId(), array('confirm' => __('Are you sure?'), 'method' => 'delete')) ?>
                 </div>
               </td>
             </tr>
@@ -100,4 +100,3 @@
     </div>
   </div>
 </div>
-<div class="clear"></div>
