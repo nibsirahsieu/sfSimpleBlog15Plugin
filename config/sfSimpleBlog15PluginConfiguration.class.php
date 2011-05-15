@@ -19,4 +19,13 @@ class sfSimpleBlog15PluginConfiguration extends sfPluginConfiguration
       }
     }
   }
+
+  public static function loadBackendTheme(sfEvent $event)
+  {
+    $parameters = $event->getParameters();
+    if ($event->getSubject()->getAction($parameters['module'], $parameters['action'])->isSecure())
+    {
+      sfApplicationConfiguration::getActive()->getPluginConfiguration('sfThemePlugin')->getThemeManager()->setCurrentTheme(sfConfig::get('app_sfSimpleBlog_admin_theme', 'backend_theme'));
+    }
+  }
 }
