@@ -12,7 +12,7 @@ The `sfSimpleBlog15Plugin` adds standard weblog features to an existing website:
    * RSS feeds (if [sfFeed2Plugin](http://www.symfony-project.org/plugins/sfFeed2Plugin) is installed)
    * Administration for posts, comments, pages, links and tags
 
-It is not aimed at replacing full-featured blog packages, but offers a lightweight alternative for when you build a website that has to contain a blog section. It is voluntarily simple and limited (that's why it doesn't come with a BBCode parser, a search engine, a media asset library, or a user management module). However, it is very easy to configure and adapt, so it should fulfill most basic blog requirements.
+It is not aimed at replacing full-featured blog packages, but offers a lightweight alternative for when you build a website that has to contain a blog section. 
 
 ## Contents ##
 
@@ -76,24 +76,37 @@ The plugin is highly configurable and should be easy to integrate to an existing
 
     all:
       sfSimpleBlog:
-        default_theme: veryplaintxt
-        title:         My Symfony Blog
-        sidebar:       [tags, recent_posts, recent_comments, feeds, links]
+        default_theme:         veryplaintxt #refer to themeVeryPlaintxtPlugin
+        admin_theme:           backend_theme
+        title:                 sfSimpleBlog
+        use_feeds:             true       # enable feeds (require sfFeed2Plugin)
+        use_post_extract:      true       # display extract in post list instead of full post body
+        post_max_per_page:     5          # number of posts displayed in a list of posts
+        post_recent:           5          # number of posts to display in the recent sidebar widget
 
-        use_post_extract: true         # display extract in post list instead of full post body
-        post_max_per_page:  5          # number of posts displayed in a list of posts
-        post_recent:        5          # number of posts to display in the recent sidebar widget
-
-        comment_disable_after:  0      # number of days after which comments on a post are not possible anymore
-        feed_count:         5          # number of posts appearing in the RSS feed
-        comment_disable_after: 0
-        share_on:
+        feed_count:            5          # number of posts appearing in the RSS feed
+        sidebar:               [tags, recent_posts, recent_comments, feeds, links]
+        comment_disable_after: 0          # number of days after which comments on a post are not possible anymore
+        share_on:                         # social bookmarks
           - twitter
           - facebook
           - delicious
           - stumbleupon
           - digg
           - reddit
+
+      theme:
+        themes:
+          backend_theme:
+            description:   Backend Theme
+            layout:        backend_layout
+            templates_dir: sfSimpleBlog15Plugin/templates/
+            stylesheets:
+              - ../sfSimpleBlog15Plugin/css/main.css
+              - ../sfSimpleBlog15Plugin/css/style.css
+              - ../sfSimpleBlog15Plugin/css/button.css
+
+            javascripts:  []
 
 You can customize these settings in `myproject/apps/myapp/config/app.yml`
 
@@ -104,6 +117,21 @@ The `sidebar` array controls which widgets, and in which order, appear in the si
  - `feeds`: links to the RSS and Atom feeds
  - `recent_comments`: list of recent comments
  - `links`: list of links
+
+## Front-end theme ##
+
+This plugin use [themeVeryplaintxtPlugin](https://github.com/nibsirahsieu/themeVeryplaintxtPlugin) as a default theme.
+You can create your own theme and set it as default. You can find the instuction here [themeTwentytenPlugin](https://github.com/rafaelgou/themeTwentytenPlugin)
+
+## Back-end theme ##
+
+This plugin comes with the default backend theme. To active it, add the code below to your backend configuration (fe: backendConfiguration.class.php)
+
+    [php]
+    public function configure()
+    {
+      $this->dispatcher->connect('controller.change_action', array('sfSimpleBlog15PluginConfiguration', 'loadBackendTheme'));
+    }
 
 ## Working Demo ##
   * [http://nibsirahsieu.com](http://nibsirahsieu.com), this is my own blog and it is built on this plugin
