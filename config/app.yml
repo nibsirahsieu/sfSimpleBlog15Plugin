@@ -1,6 +1,7 @@
 all:
   sfSimpleBlog:
-    default_theme:         veryplaintxt
+    default_theme:         veryplaintxt #refer to themeVeryPlaintxtPlugin
+    admin_theme:           backend_theme
     title:                 sfSimpleBlog
     use_feeds:             true       # enable feeds (require sfFeed2Plugin)
     use_post_extract:      true       # display extract in post list instead of full post body
@@ -17,3 +18,16 @@ all:
       - stumbleupon
       - digg
       - reddit
+      
+  theme:
+    themes:
+      backend_theme:
+        description:   Backend Theme
+        layout:        backend_layout
+        templates_dir: sfSimpleBlog15Plugin/templates/
+        stylesheets:
+          - ../sfSimpleBlog15Plugin/css/main.css
+          - ../sfSimpleBlog15Plugin/css/style.css
+          - ../sfSimpleBlog15Plugin/css/button.css
+
+        javascripts:  []
