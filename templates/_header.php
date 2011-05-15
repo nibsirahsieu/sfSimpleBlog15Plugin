@@ -11,12 +11,9 @@
   <div id='sf_admin_top_menu'>
     <ul class="f-right">
       <li><a href="<?php echo cross_app_url_for('frontend', '@homepage', true) ?>"><span class="button black large"><?php echo __('Visit Site', null, 'sf_admin_blog') ?> &raquo;</span></a></li>
-
 		</ul>
 		<ul>
       <li><a href="<?php echo url_for('@homepage') ?>"><span class="button black large">&laquo; <?php echo __('Dashboard', null, 'sf_admin_blog') ?></span></a></li>
     </ul>
-
   </div>
-  <?php include_slot('searchForm') ?>
 <?php endif; ?>
