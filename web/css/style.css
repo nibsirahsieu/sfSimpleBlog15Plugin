@@ -20,37 +20,12 @@ ul#admin_nav li a.expanded:hover {background-position: 0 -120px;}
 #sf_admin_container tr.even td {background-color: #E8F6FF;background-image: none;}
 #sf_admin_container th, #sf_admin_container th a, #sf_admin_container th a:hover {background-color: #0085CC;color: #FFFFFF;}
 #sf_admin_container .sf_admin_list_td_nb_comments {text-align: center;}
-#sf_admin_container span.comments-count {
-  background-color: #21759B;
-  font-weight: bold;
-  height: 1.7em;
-  line-height: 1.70em;
-  min-width: .7em;
-  padding: 0 6px;
-  display: inline-block;
-  cursor: pointer;
-  -moz-border-radius: 5px;
-  -khtml-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
-  color: #FFFFFF;
-}
+#sf_admin_container span.comments-count {background-color: #21759B;font-weight: bold;height: 1.7em;line-height: 1.70em;min-width: .7em;padding: 0 6px;display: inline-block;cursor: pointer;-moz-border-radius: 5px;-khtml-border-radius: 5px;-webkit-border-radius: 5px;border-radius: 5px;color: #FFFFFF;}
 #sf_admin_container a:hover span.comments-count {background-color: #D54E21;}
 #sf_admin_container fieldset h2 {background: none repeat scroll 0 0 #C9E3F8;border: 1px solid #6AA6D6;}
 
 /*admin footer*/
-#sf_admin_theme_footer {
-  background: url(../images/bg_footer.png) repeat-x bottom;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
-  -moz-border-radius-bottomright: 10px;
-  -moz-border-radius-bottomleft: 10px;
-  -khtml-border-radius-bottomright: 10px;
-  -khtml-border-radius-bottomleft: 10px;
-  -webkit-border-radius-bottomright: 10px;
-  -webkit-border-radius-bottomleft: 10px;
-  text-shadow: 1px 1px 1px white;
-}
+#sf_admin_theme_footer {background: url(../images/bg_footer.png) repeat-x bottom;border-bottom-left-radius: 10px;border-bottom-right-radius: 10px;-moz-border-radius-bottomright: 10px;-moz-border-radius-bottomleft: 10px;-khtml-border-radius-bottomright: 10px;-khtml-border-radius-bottomleft: 10px;-webkit-border-radius-bottomright: 10px;-webkit-border-radius-bottomleft: 10px;text-shadow: 1px 1px 1px white;}
 
 /*others*/
 select {padding-top: 3px;padding-bottom: 3px;}
@@ -59,4 +34,8 @@ input[type="submit"], input[type="reset"] {font-weight: bold;cursor:pointer;widt
 
 ul.previous-tags {margin-bottom: 10px;}
 
-.box textarea, .box input {width: 450px;}
+.box textarea, .box input {width: 435px;}
+
+.error, .error_list {background: none repeat scroll 0 0 #901830;color: #FFFFFF;padding: 4px 8px;}
+
+.box .error, .box .error_list {margin: 0 20px 4px 0;}
