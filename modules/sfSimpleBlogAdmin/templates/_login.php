@@ -23,21 +23,20 @@
           <?php if(isset($form['_csrf_token'])): ?>
             <?php echo $form['_csrf_token']->render(); ?>
           <?php endif; ?>
-          <div class="inputlabel"><?php echo $form['username']->renderLabel(__('Username', array(), 'sf_admin_blog')); ?>&nbsp;</div>
-          <div class="inputcontainer">
-            <?php echo $form['username']->render(array('class' => 'username')); ?>
+          <?php echo $form['username']->renderRow(); ?>
+          <?php echo $form['password']->renderRow(); ?>
+          <div class="button_holder">
+            <label for="signin_remember">
+              <?php echo $form['remember']->render(array('class' => 'inputcheck')); ?>
+              <?php echo __('Remember?', array(), 'sf_admin_blog') ?>
+            </label>
+            <input type="submit" value="Login" class="button blue large" />
           </div>
-          <div class="inputlabel"><?php echo $form['password']->renderLabel(__('Password', array(), 'sf_admin_blog')); ?>&nbsp;</div>
-          <div class="inputcontainer">
-            <?php echo $form['password']->render(array('class' => 'password')); ?>
-          </div>
-          <div class="inputrememberme">
-            <?php echo $form['remember']->renderLabel(__('Remember?', array(), 'sf_admin_blog')); ?>
-            <?php echo $form['remember']->render(array('class' => 'inputcheck')); ?>
-          </div>
-          <input type="submit" value="Login" class="loginsubmit button blue" />
         </form>
       </div>
     </div>
   </body>
 </html>
+<script type="text/javascript">
+try{document.getElementById('signin_username').focus();}catch(e){}
+</script>
