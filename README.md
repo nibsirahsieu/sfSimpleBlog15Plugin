@@ -12,7 +12,7 @@ The `sfSimpleBlog15Plugin` adds standard weblog features to an existing website:
    * RSS feeds (if [sfFeed2Plugin](http://www.symfony-project.org/plugins/sfFeed2Plugin) is installed)
    * Administration for posts, comments, pages, links and tags
 
-It is not aimed at replacing full-featured blog packages, but offers a lightweight alternative for when you build a website that has to contain a blog section. 
+It is not aimed at replacing full-featured blog packages, but offers a lightweight alternative for when you build a website that has to contain a blog section.
 
 ## Contents ##
 
@@ -139,6 +139,12 @@ This plugin also packaged a login form. Currently, it works with sfGuardPlugin. 
 
     // in application/modules/sfGuardAuth/templates/signinSuccess.php
     <?php include_partial('sfSimpleBlogAdmin/login', array('form' => $form)); ?>
+
+Then in your `myproject/apps/myapp/config/app.yml`, add a configuration below:
+
+    all:
+      sf_guard_plugin:
+        signin_form: sfSimpleBlogFormSignin
 
 ## Working Demo ##
   * [http://nibsirahsieu.com](http://nibsirahsieu.com), this is my own blog and it is built on this plugin
