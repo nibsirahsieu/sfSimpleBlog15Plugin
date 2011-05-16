@@ -133,5 +133,12 @@ This plugin comes with the default backend theme. To active it, add the code bel
       $this->dispatcher->connect('controller.change_action', array('sfSimpleBlog15PluginConfiguration', 'loadBackendTheme'));
     }
 
+## Back-end login form ##
+
+This plugin also packaged a login form. Currently, it works with sfGuardPlugin. Include it like this:
+
+    // in application/modules/sfGuardAuth/templates/signinSuccess.php
+    <?php include_partial('sfSimpleBlogAdmin/login', array('form' => $form)); ?>
+
 ## Working Demo ##
   * [http://nibsirahsieu.com](http://nibsirahsieu.com), this is my own blog and it is built on this plugin
