@@ -56,4 +56,18 @@ class PluginsfSimpleBlogPostQuery extends BasesfSimpleBlogPostQuery {
     }
     return $this->findOne();
   }
+  
+  public function categorized($category)
+  {
+    return $this
+       >join('sfSimpleBlogPost.sfSimpleBlogPostCategory')
+      ->join('sfSimpleBlogPostCategory.sfSimpleBlogCategory')
+      ->where('sfSimpleBlogCategory.Name = ?', $category);
+  }
+
+  public function tagged($tags = array())
+  {
+    $taggings = TagPeer::getTaggings($tags, array('model' => 'sfSimpleBlogPost'));
+    return $this->filterById($taggings['sfSimpleBlogPost']);
+  }
 } // sfSimpleBlogPostQuery

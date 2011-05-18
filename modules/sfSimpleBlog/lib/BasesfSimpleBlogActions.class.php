@@ -47,23 +47,21 @@ class BasesfSimpleBlogActions extends sfActions
 
   public function executeShowByTag(sfWebRequest $request)
   {
-    $tag = $request->getParameter('tag');
-    $this->forward404Unless($tag);
-    $criteria = TagPeer::getTaggedWithCriteria('sfSimpleBlogPost', array($tag));
-    $this->post_pager = sfSimpleBlogPostQuery::create(null, $criteria)
+    $this->forward404Unless($tag = $request->getParameter('tag'));
+    $this->post_pager = sfSimpleBlogPostQuery::create()
       ->recent()
       ->published()
+      ->tagged($tag)
       ->paginate($request->getParameter('page', 1), sfConfig::get('app_sfSimpleBlog_post_max_per_page', 5));
   }
 
   public function executeShowByCategory(sfWebRequest $request)
   {
+    $this->forward404Unless($category = $request->getParameter('category'));
     $this->post_pager = sfSimpleBlogPostQuery::create()
       ->recent()
       ->published()
-      ->join('sfSimpleBlogPost.sfSimpleBlogPostCategory')
-      ->join('sfSimpleBlogPostCategory.sfSimpleBlogCategory')
-      ->where('sfSimpleBlogCategory.Name = ?', $request->getParameter('category'))
+      ->categorized($category)
       ->paginate($request->getParameter('page', 1), sfConfig::get('app_sfSimpleBlog_post_max_per_page', 5));
   }
 
@@ -135,11 +133,10 @@ class BasesfSimpleBlogActions extends sfActions
   public function executePostsForTagFeed(sfWebRequest $request)
   {
     sfApplicationConfiguration::getActive()->loadHelpers(array('I18N'));
-    $tag = $request->getParameter('tag');
-    $this->forward404Unless($tag);
-    $criteria = TagPeer::getTaggedWithCriteria('sfSimpleBlogPost', array($tag));
-    $posts = sfSimpleBlogPostQuery::create(null, $criteria)
+    $this->forward404Unless($tag = $request->getParameter('tag'));
+    $posts = sfSimpleBlogPostQuery::create()
       ->recent()
+      ->tagged($tag)
       ->limit($request->getParameter('nb', sfConfig::get('app_sfSimpleBlog_feed_count', 5)))
       ->find();
 
