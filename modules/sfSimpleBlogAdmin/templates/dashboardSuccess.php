@@ -38,7 +38,7 @@
                 <h4><?php echo __('From ') ?><?php echo $recentComment->getAuthorName() ?><?php echo __(' on ') ?>"<?php echo $recentComment->getCommentableTitle() ?>"</h4>
                 <?php $strippedComment = strip_tags($recentComment->getContent(ESC_RAW)) ?>
                 <?php if (strlen($strippedComment) > 100): ?>
-                  <?php echo substr(strip_tags($recentComment->getContent(ESC_RAW)), 0, 100).' ...' ?>
+                  <?php echo substr($strippedComment, 0, 100).' ...' ?>
                 <?php else: ?>
                   <?php echo $strippedComment ?>
                 <?php endif; ?>
@@ -81,9 +81,9 @@
               <td><?php echo $i+1 ?></td>
               <td>
                 <h4><?php echo $draft->getTitle() ?></h4>
-                <?php $strippedContent = strip_tags($draft->getContent()) ?>
+                <?php $strippedContent = strip_tags($draft->getContent(ESC_RAW)) ?>
                 <?php if (strlen($strippedContent) > 100): ?>
-                  <?php echo substr(strip_tags($strippedContent->getContent(ESC_RAW)), 0, 100).' ...' ?>
+                  <?php echo substr($strippedContent, 0, 100).' ...' ?>
                 <?php else: ?>
                   <?php echo $strippedContent ?>
                 <?php endif; ?>
