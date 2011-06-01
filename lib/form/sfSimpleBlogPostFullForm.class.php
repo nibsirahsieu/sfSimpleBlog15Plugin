@@ -10,9 +10,11 @@ class sfSimpleBlogPostFullForm extends sfSimpleBlogPostForm
 		));
     $this->widgetSchema['title']->setAttribute('size', 60);
     $this->widgetSchema['tags'] = new sfWidgetFormInputTags(array(
-          'taggable_object'          => $this->getObject(),
-          'enable_autocomplete'      => true
-        ));
-    $this->validatorSchema['tags'] = new sfValidatorTags();
+      'taggable_object'          => $this->getObject(),
+      'enable_autocomplete'      => true
+    ));
+    $this->validatorSchema['tags'] = new sfValidatorTags(array(
+      'taggable_object'          => $this->getObject()
+    ));
   }
 }

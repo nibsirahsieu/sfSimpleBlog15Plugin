@@ -44,52 +44,6 @@ class BasesfSimpleBlogPostAdminActions extends autoSfSimpleBlogPostAdminActions
     }
   }
 
-  protected function processForm(sfWebRequest $request, sfForm $form)
-  {
-    $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
-    if ($form->isValid())
-    {
-      $affectedRows = 0;
-
-      $notice = $form->getObject()->isNew() ? 'The item was created successfully.' : 'The item was updated successfully.';
-
-      $prms = $request->getParameter($form->getName());
-      $tags = isset($prms['tags']) ? $prms['tags'] : array();
-      $con = $form->getConnection();
-      try
-      {
-        $con->beginTransaction();
-        if (count($tags) > 0) $form->getObject()->addTag($tags);
-        $sf_simple_blog_post = $form->save($con);
-        $con->commit();
-      }
-      catch (Exception $e)
-      {
-        $con->rollback();
-        throw $e;
-      }
-
-      $this->dispatcher->notify(new sfEvent($this, 'admin.save_object', array('object' => $sf_simple_blog_post)));
-
-      if ($request->hasParameter('_save_and_add'))
-      {
-        $this->getUser()->setFlash('notice', $notice.' You can add another one below.');
-
-        $this->redirect('@sf_simple_blog_post_new');
-      }
-      else
-      {
-        $this->getUser()->setFlash('notice', $notice);
-
-        $this->redirect(array('sf_route' => 'sf_simple_blog_post_edit', 'sf_subject' => $sf_simple_blog_post));
-      }
-    }
-    else
-    {
-      $this->getUser()->setFlash('error', 'The item has not been saved due to some errors.', false);
-    }
-  }
-
   public function executeViewVersion(sfWebRequest $request)
   {
     $this->post_version = sfSimpleBlogPostVersionQuery::create()->filterById($request->getParameter('id'))->filterByVersion($request->getParameter('version'))->findOne();
