@@ -52,7 +52,7 @@ This plugin contains nine modules that you can activate in whatever application 
     * [sfPropel15Plugin with 1.6 branch](https://github.com/fzaninotto/sfPropel15Plugin), [have a look at here](https://github.com/fzaninotto/sfPropel15Plugin/blob/1.6/INSTALL.md)
     * [sfNestedCommentPlugin](https://github.com/nibsirahsieu/sfNestedCommentPlugin)
     * [sfPropelActAsTaggableBehaviorPlugin](http://www.symfony-project.org/plugins/sfPropelActAsTaggableBehaviorPlugin)
-    * [sfPropelTaggableWidgetPlugin](http://www.symfony-project.org/plugins/sfPropelTaggableWidgetPlugin)
+    * [sfPropelTaggableWidgetPlugin (trunk version)](http://www.symfony-project.org/plugins/sfPropelTaggableWidgetPlugin)
     * [sfSyntaxHighlighterPlugin](http://www.symfony-project.org/plugins/sfSyntaxHighlighterPlugin)
     * [sfThemePlugin](https://github.com/rafaelgou/sfThemePlugin)
     * [themeVeryplaintxtPlugin](https://github.com/nibsirahsieu/themeVeryplaintxtPlugin)
@@ -162,4 +162,4 @@ Then in your `myproject/apps/myapp/config/app.yml`, add a configuration below:
 ![Preview Edit Post](http://dl.dropbox.com/u/16750037/sfSimpleBlog15Plugin/Screenshot-3.png)
 
 ### Posts View ###
-![Preview Posts](http://dl.dropbox.com/u/16750037/sfSimpleBlog15Plugin/Screenshot-1.png)
+![Preview Posts View](http://dl.dropbox.com/u/16750037/sfSimpleBlog15Plugin/Screenshot-1.png)
