@@ -16,9 +16,10 @@ It is not aimed at replacing full-featured blog packages, but offers a lightweig
 
 ## Contents ##
 
-This plugin contains eight modules that you can activate in whatever application you need them:
+This plugin contains nine modules that you can activate in whatever application you need them:
 
  * `sfSimpleBlog`: Blog front-end
+ * `sfSimpleBlogFeed`: Blog feeds (automatically enabled if `use_feeds` setting is true)
  * `sfSimpleBlogAdmin`: Backend dashboard
  * `sfSimpleBlogPostAdmin`: Backend for managing posts
  * `sfSimpleBlogCategoryAdmin`: Backend for managing categories
@@ -48,7 +49,7 @@ This plugin contains eight modules that you can activate in whatever application
 ## Dependencies ##
   * Symfony Plugins :
     * [sfGuardPlugin](http://www.symfony-project.org/plugins/sfGuardPlugin)
-    * [sfPropel15Plugin with 1.6 branch](https://github.com/fzaninotto/sfPropel15Plugin), [see this link](https://github.com/fzaninotto/sfPropel15Plugin/commit/3059e1b9af3cb3b39e0096d7807d1cac6e7a230e)
+    * [sfPropel15Plugin with 1.6 branch](https://github.com/fzaninotto/sfPropel15Plugin), [have a look at here](https://github.com/fzaninotto/sfPropel15Plugin/blob/1.6/INSTALL.md)
     * [sfNestedCommentPlugin](https://github.com/nibsirahsieu/sfNestedCommentPlugin)
     * [sfPropelActAsTaggableBehaviorPlugin](http://www.symfony-project.org/plugins/sfPropelActAsTaggableBehaviorPlugin)
     * [sfPropelTaggableWidgetPlugin](http://www.symfony-project.org/plugins/sfPropelTaggableWidgetPlugin)
@@ -148,3 +149,13 @@ Then in your `myproject/apps/myapp/config/app.yml`, add a configuration below:
 
 ## Working Demo ##
   * [http://nibsirahsieu.com](http://nibsirahsieu.com), this is my own blog and it is built on this plugin
+
+## Screenshots ##
+
+![Preview Login Page](http://dl.dropbox.com/u/16750037/sfSimpleBlog15Plugin/Screenshot-2.png)
+
+![Preview Dashboard](http://dl.dropbox.com/u/16750037/sfSimpleBlog15Plugin/Screenshot.png)
+
+![Preview Edit Post](http://dl.dropbox.com/u/16750037/sfSimpleBlog15Plugin/Screenshot-3.png)
+
+![Preview Posts](http://dl.dropbox.com/u/16750037/sfSimpleBlog15Plugin/Screenshot-1.png)
