@@ -152,10 +152,14 @@ Then in your `myproject/apps/myapp/config/app.yml`, add a configuration below:
 
 ## Screenshots ##
 
+### Login Page ###
 ![Preview Login Page](http://dl.dropbox.com/u/16750037/sfSimpleBlog15Plugin/Screenshot-2.png)
 
+### Dashboard ###
 ![Preview Dashboard](http://dl.dropbox.com/u/16750037/sfSimpleBlog15Plugin/Screenshot.png)
 
+### Edit Post ###
 ![Preview Edit Post](http://dl.dropbox.com/u/16750037/sfSimpleBlog15Plugin/Screenshot-3.png)
 
+### Posts View ###
 ![Preview Posts](http://dl.dropbox.com/u/16750037/sfSimpleBlog15Plugin/Screenshot-1.png)
