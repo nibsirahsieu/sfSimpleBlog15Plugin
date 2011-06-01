@@ -21,13 +21,23 @@ class sfSimpleBlogTools
     }
   }
 
-  public static function indexObjectsByFunction($array, $function)
+  public static function generateFeedUri($post, $postfix = null, $action = 'show')
   {
-    $result = array();
-    foreach($array as $object) {
-      $result[$object->$function()] = $object;
+    $strippedTitle = is_array($post) ? $post['StrippedTitle'] : $post->getStrippedTitle();
+    if (sfConfig::get('app_sfSimpleBlog_use_date_in_url', false))
+    {
+      $publishedAt =  is_array($post) ? strtotime($post['PublishedAt']) : strtotime($post->getPublishedAt());
+      return 'sfSimpleBlogFeed/' . $action . '?' .
+        'year='.date('Y', $publishedAt) .
+        '&month='.date('m', $publishedAt) .
+        '&day='.date('d', $publishedAt) .
+        '&stripped_title='.$strippedTitle .
+        $postfix;
     }
-    return $result;
+    else
+    {
+      return 'sfSimpleBlogFeed/' . $action . '?stripped_title=' . $strippedTitle.$postfix;
+    }
   }
 }
 

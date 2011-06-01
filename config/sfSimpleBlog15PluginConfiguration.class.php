@@ -5,7 +5,12 @@ class sfSimpleBlog15PluginConfiguration extends sfPluginConfiguration
   {
     if ($this->configuration instanceof sfApplicationConfiguration)
     {
-      if (sfConfig::get('app_sf_simple_blog15_plugin_routes_register', true) && in_array('sfSimpleBlog', sfConfig::get('sf_enabled_modules', array())))
+      if (sfConfig::get('app_sfSimpleBlog_use_feeds', false))
+      {
+        sfConfig::set('sf_enabled_modules', array_merge(sfConfig::get('sf_enabled_modules'), array('sfSimpleBlogFeed')));
+      }
+      
+      if (sfConfig::get('app_sfSimpleBlog_routes_register', true) && in_array('sfSimpleBlog', sfConfig::get('sf_enabled_modules', array())))
       {
         $this->dispatcher->connect('routing.load_configuration', array('sfSimpleBlog15Routing', 'listenToRoutingLoadConfigurationEvent'));
       }

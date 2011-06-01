@@ -1,11 +1,5 @@
 <?php use_helper('I18N', 'Date') ?>
 
-<?php if(sfConfig::get('app_sfSimpleBlog_use_feeds', true)): ?>
-  <?php slot('auto_discovery_link_tag') ?>
-    <?php echo auto_discovery_link_tag('rss', 'sfSimpleBlog/postsForTagFeed?tag='.$sf_params->get('tag'), array('title' => __('Posts tagged "%1%" from %2%', array('%1%' => $sf_params->get('tag'), '%2%' => sfConfig::get('app_sfSimpleBlog_title', 'How is life on earth?'))))) ?>
-  <?php end_slot() ?>
-<?php endif; ?>
-
 <h3><?php echo __('Search results for "%1%"', array('%1%' => $sf_params->get('s'))) ?></h3>
 <span class="sfSimpleBlog">
 <?php foreach($post_pager->getResults() as $post): ?>

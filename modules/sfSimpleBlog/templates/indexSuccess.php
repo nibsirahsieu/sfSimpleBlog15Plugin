@@ -2,7 +2,7 @@
 
 <?php if(sfConfig::get('app_sfSimpleBlog_use_feeds', true)): ?>
 <?php slot('auto_discovery_link_tag') ?>
-  <?php echo auto_discovery_link_tag('rss', 'sfSimpleBlog/postsFeed?format=rss', array('title' => __('Posts from %1%', array('%1%' => sfConfig::get('app_sfSimpleBlog_title', 'sfSimpleBlog'))))) ?>
+  <?php echo auto_discovery_link_tag('rss', '@sf_simple_blog_posts_feed?format=rss', array('title' => __('Posts from %1%', array('%1%' => sfConfig::get('app_sfSimpleBlog_title', 'sfSimpleBlog'))))) ?>
 <?php end_slot() ?>
 <?php endif; ?>
 
