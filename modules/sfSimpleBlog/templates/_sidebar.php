@@ -24,7 +24,7 @@
     <li class="widget-container feeds">
       <h3 class="widget-title"><?php echo __('RSS Feeds', null, 'sf_simple_blog') ?></h3>
       <ul>
-        <?php include_partial('sfSimpleBlog/feed') ?>
+        <?php include_partial('sfSimpleBlogFeed/feed') ?>
       </ul>
     </li>
   <?php elseif ($widget == 'links'): ?>
