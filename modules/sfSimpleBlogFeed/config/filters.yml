@@ -5,13 +5,6 @@ security:  ~
 sf_syntax_highlighter_plugin:
   enabled: false
 
-conditional_cache:
-  class: ConditionalCacheFilter
-  param:
-    pages:
-      - { module: sfSimpleBlog, action: _post }
-      - { module: sfSimpleBlog, action: _post_short }
-
 cache:     ~
 
 execution: ~
