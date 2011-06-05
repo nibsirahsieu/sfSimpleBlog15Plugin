@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Helper functions for generating links (linked icons) to easily add a url 
+ * Helper functions for generating links (string XHTML compliant <a href> tags) to easily add a url
  * to a social bookmarking application. 
  *
  * <strong>Example:</strong>
@@ -32,35 +32,56 @@
 use_helper('Url');
 
 /**
+ * @ignore
+ */
+function social_bookmarking_options($share_on, $options = array())
+{
+  if (isset($options['class']))
+  {
+    $options['class'] = $options['class'].' '.$share_on;
+  }
+  else
+  {
+    $options['class'] = $share_on;
+  }
+  if (!isset($options['title']))
+  {
+    $options['title'] = 'Share on '.$share_on;
+  }
+  return $options;
+}
+
+/**
  * Builds a link to add url to del.icio.us.
  * 
  * @param   string   $url - Url which should be added 
  * @param   string   $title - Title which describes the content of the page
- * @param   string   $name - Text which is shown on image hover
- * @return  string   Linked icon
- * @see     link_to, image_tag
+ * @param   string   $name - name of the link
+ * @param   array    $options additional HTML compliant <a> tag parameters
+ * @return  string   string XHTML compliant <a href> tag
+ * @see     link_to
  */
-function link_to_delicious($url, $title, $name)
+function link_to_delicious($url, $title, $name = 'delicious', $options = array())
 {
   $title = urlencode($title);
   $url = urlencode($url);
-
-  return link_to($name, 'http://del.icio.us/post?url='.$url.'&title='.$title, array('class' => $name, 'title' => 'Share on delicious'));
+  return link_to($name, 'http://del.icio.us/post?url='.$url.'&title='.$title, social_bookmarking_options('delicious', $options));
 }
 
 /**
  * Builds a link to add url to Technorati.
  * 
  * @param   string   $url - Url which should be added 
- * @param   string   $name - Text which is shown on image hover
- * @return  string   Linked icon
- * @see     link_to, image_tag
+ * @param   string   $name - name of the link
+ * @param   array    $options additional HTML compliant <a> tag parameters
+ * @return  string   string XHTML compliant <a href> tag
+ * @see     link_to
  */
-function link_to_technorati($url, $name)
+function link_to_technorati($url, $name = 'technorati', $options = array())
 {
   $url = urlencode($url);
 
-  return link_to($name, 'http://technorati.com/faves/?add='.$url, array('class' => $name, 'title' => 'Share on technorati'));
+  return link_to($name, 'http://technorati.com/faves/?add='.$url, social_bookmarking_options('technorati', $options));
 }
 
 /**
@@ -68,16 +89,17 @@ function link_to_technorati($url, $name)
  * 
  * @param   string   $url - Url which should be added 
  * @param   string   $title - Title which describes the content of the page
- * @param   string   $name - Text which is shown on image hover
- * @return  string   Linked icon
- * @see     link_to, image_tag
+ * @param   string   $name - name of the link
+ * @param   array    $options additional HTML compliant <a> tag parameters
+ * @return  string   string XHTML compliant <a href> tag
+ * @see     link_to
  */
-function link_to_furl($url, $title, $name)
+function link_to_furl($url, $title, $name = 'furl', $options = array())
 {
   $title = urlencode($title);
   $url = urlencode($url);
 
-  return link_to($name, 'http://www.furl.net/storeIt.jsp?t='.$title.'&u='.$url, array('class' => $name, 'title' => 'Share on furl'));
+  return link_to($name, 'http://www.furl.net/storeIt.jsp?t='.$title.'&u='.$url, social_bookmarking_options('furl', $options));
 }
 
 /**
@@ -85,16 +107,17 @@ function link_to_furl($url, $title, $name)
  * 
  * @param   string   $url - Url which should be added 
  * @param   string   $title - Title which describes the content of the page
- * @param   string   $name - Text which is shown on image hover
- * @return  string   Linked icon
- * @see     link_to, image_tag
+ * @param   string   $name - name of the link
+ * @param   array    $options additional HTML compliant <a> tag parameters
+ * @return  string   string XHTML compliant <a href> tag
+ * @see     link_to
  */
-function link_to_yahoo_myweb($url, $title, $name)
+function link_to_yahoo_myweb($url, $title, $name = 'yahoo myweb', $options = array())
 {
   $title = urlencode($title);
   $url = urlencode($url);
 
-  return link_to($name, 'http://myweb2.search.yahoo.com/myresults/bookmarklet?u='.$url.'&t='.$title, array('class' => $name, 'title' => 'Share on yahoo myweb'));
+  return link_to($name, 'http://myweb2.search.yahoo.com/myresults/bookmarklet?u='.$url.'&t='.$title, social_bookmarking_options('yahoo myweb', $options));
 }
 
 /**
@@ -102,16 +125,17 @@ function link_to_yahoo_myweb($url, $title, $name)
  * 
  * @param   string   $url - Url which should be added 
  * @param   string   $title - Title which describes the content of the page
- * @param   string   $name - Text which is shown on image hover
- * @return  string   Linked icon
- * @see     link_to, image_tag
+ * @param   string   $name - name of the link
+ * @param   array    $options additional HTML compliant <a> tag parameters
+ * @return  string   string XHTML compliant <a href> tag
+ * @see     link_to
  */
-function link_to_google_bookmarks($url, $title, $name)
+function link_to_google_bookmarks($url, $title, $name = 'google bookmark', $options = array())
 {
   $title = urlencode($title);
   $url = urlencode($url);
 
-  return link_to($name, 'http://www.google.com/bookmarks/mark?op=edit&bkmk='.$url.'&title='.$title, array('class' => $name, 'title' => 'Share on google bookmark'));
+  return link_to($name, 'http://www.google.com/bookmarks/mark?op=edit&bkmk='.$url.'&title='.$title, social_bookmarking_options('google bookmark', $options));
 }
 
 /**
@@ -119,16 +143,17 @@ function link_to_google_bookmarks($url, $title, $name)
  * 
  * @param   string   $url - Url which should be added 
  * @param   string   $title - Title which describes the content of the page
- * @param   string   $name - Text which is shown on image hover
- * @return  string   Linked icon
- * @see     link_to, image_tag
+ * @param   string   $name - name of the link
+ * @param   array    $options additional HTML compliant <a> tag parameters
+ * @return  string   string XHTML compliant <a href> tag
+ * @see     link_to
  */
-function link_to_blinklist($url, $title, $name)
+function link_to_blinklist($url, $title, $name = 'blinklist', $options = array())
 {
   $title = urlencode($title);
   $url = urlencode($url);
 
-  return link_to($name, 'http://blinklist.com/index.php?Action=Blink/addblink.php&Url='.$url.'&Title='.$title, array('class' => $name, 'title' => 'Share on blinklist'));
+  return link_to($name, 'http://blinklist.com/index.php?Action=Blink/addblink.php&Url='.$url.'&Title='.$title, social_bookmarking_options('blinklist', $options));
 }
 
 /**
@@ -136,16 +161,17 @@ function link_to_blinklist($url, $title, $name)
  * 
  * @param   string   $url - Url which should be added 
  * @param   string   $title - Title which describes the content of the page
- * @param   string   $name - Text which is shown on image hover
- * @return  string   Linked icon
- * @see     link_to, image_tag
+ * @param   string   $name - name of the link
+ * @param   array    $options additional HTML compliant <a> tag parameters
+ * @return  string   string XHTML compliant <a href> tag
+ * @see     link_to
  */
-function link_to_magnolia($url, $title, $name)
+function link_to_magnolia($url, $title, $name = 'magnolia', $options = array())
 {
   $title = urlencode($title);
   $url = urlencode($url);
 
-  return link_to($name, 'http://ma.gnolia.com/bookmarklet/add?url='.$url.'&title='.$title, array('class' => $name, 'title' => 'Share on magnolia'));
+  return link_to($name, 'http://ma.gnolia.com/bookmarklet/add?url='.$url.'&title='.$title, social_bookmarking_options('magnolia', $options));
 }
 
 /**
@@ -153,16 +179,17 @@ function link_to_magnolia($url, $title, $name)
  * 
  * @param   string   $url - Url which should be added 
  * @param   string   $title - Title which describes the content of the page
- * @param   string   $name - Text which is shown on image hover
- * @return  string   Linked icon
- * @see     link_to, image_tag
+ * @param   string   $name - name of the link
+ * @param   array    $options additional HTML compliant <a> tag parameters
+ * @return  string   string XHTML compliant <a href> tag
+ * @see     link_to
  */
-function link_to_windows_live($url, $title, $name)
+function link_to_windows_live($url, $title, $name = 'window live', $options = array())
 {
   $title = urlencode($title);
   $url = urlencode($url);
 
-  return link_to($name, 'https://favorites.live.com/quickadd.aspx?marklet=1&mkt=en-us&url='.$url.'&title='.$title.'&top=1', array('class' => $name, 'title' => 'Share on window live'));
+  return link_to($name, 'https://favorites.live.com/quickadd.aspx?marklet=1&mkt=en-us&url='.$url.'&title='.$title.'&top=1', social_bookmarking_options('window live', $options));
 }
 
 /**
@@ -170,16 +197,17 @@ function link_to_windows_live($url, $title, $name)
  * 
  * @param   string   $url - Url which should be added 
  * @param   string   $title - Title which describes the content of the page
- * @param   string   $name - Text which is shown on image hover
- * @return  string   Linked icon
- * @see     link_to, image_tag
+ * @param   string   $name - name of the link
+ * @param   array    $options additional HTML compliant <a> tag parameters
+ * @return  string   string XHTML compliant <a href> tag
+ * @see     link_to
  */
-function link_to_digg($url, $title, $name)
+function link_to_digg($url, $title, $name = 'digg', $options = array())
 {
   $title = urlencode($title);
   $url = urlencode($url);
 
-  return link_to($name, 'http://digg.com/submit?phase=2&url='.$url.'&title='.$title, array('class' => $name, 'title' => 'Share on digg'));
+  return link_to($name, 'http://digg.com/submit?phase=2&url='.$url.'&title='.$title, social_bookmarking_options('digg', $options));
 }
 
 /**
@@ -187,16 +215,17 @@ function link_to_digg($url, $title, $name)
  * 
  * @param   string   $url - Url which should be added 
  * @param   string   $title - Title which describes the content of the page
- * @param   string   $name - Text which is shown on image hover
- * @return  string   Linked icon
- * @see     link_to, image_tag
+ * @param   string   $name - name of the link
+ * @param   array    $options additional HTML compliant <a> tag parameters
+ * @return  string   string XHTML compliant <a href> tag
+ * @see     link_to
  */
-function link_to_netscape($url, $title, $name)
+function link_to_netscape($url, $title, $name = 'netscape', $options = array())
 {
   $title = urlencode($title);
   $url = urlencode($url);
 
-  return link_to($name, 'http://www.netscape.com/submit/?U='.$url.'&T='.$title, array('class' => $name, 'title' => 'Share on netscape'));
+  return link_to($name, 'http://www.netscape.com/submit/?U='.$url.'&T='.$title, social_bookmarking_options('netscape', $options));
 }
 
 /**
@@ -204,16 +233,17 @@ function link_to_netscape($url, $title, $name)
  * 
  * @param   string   $url - Url which should be added 
  * @param   string   $title - Title which describes the content of the page
- * @param   string   $name - Text which is shown on image hover
- * @return  string   Linked icon
- * @see     link_to, image_tag
+ * @param   string   $name - name of the link
+ * @param   array    $options additional HTML compliant <a> tag parameters
+ * @return  string   string XHTML compliant <a href> tag
+ * @see     link_to
  */
-function link_to_stumbleupon($url, $title, $name)
+function link_to_stumbleupon($url, $title, $name = 'stumbleupon', $options = array())
 {
   $title = urlencode($title);
   $url = urlencode($url);
 
-  return link_to($name, 'http://www.stumbleupon.com/submit?url='.$url.'&title='.$title, array('class' => $name, 'title' => 'Share on stumbleupon'));
+  return link_to($name, 'http://www.stumbleupon.com/submit?url='.$url.'&title='.$title, social_bookmarking_options('stumbleupon', $options));
 }
 
 /**
@@ -221,15 +251,16 @@ function link_to_stumbleupon($url, $title, $name)
  * 
  * @param   string   $url - Url which should be added 
  * @param   string   $title - Title which describes the content of the page
- * @return  string   Linked icon
- * @see     link_to, image_tag
+ * @param   array    $options additional HTML compliant <a> tag parameters
+ * @return  string   string XHTML compliant <a href> tag
+ * @see     link_to
  */
-function link_to_newsvine($url, $title, $name)
+function link_to_newsvine($url, $title, $name = 'newsvine', $options = array())
 {
   $title = urlencode($title);
   $url = urlencode($url);
 
-  return link_to($name, 'http://www.newsvine.com/_wine/save?u='.$url.'&h='.$title, array('class' => $name, 'title' => 'Share on newsvine'));
+  return link_to($name, 'http://www.newsvine.com/_wine/save?u='.$url.'&h='.$title, social_bookmarking_options('newsvine', $options));
 }
 
 /**
@@ -237,16 +268,17 @@ function link_to_newsvine($url, $title, $name)
  * 
  * @param   string   $url - Url which should be added 
  * @param   string   $title - Title which describes the content of the page
- * @param   string   $name - Text which is shown on image hover
- * @return  string   Linked icon
- * @see     link_to, image_tag
+ * @param   string   $name - name of the link
+ * @param   array    $options additional HTML compliant <a> tag parameters
+ * @return  string   string XHTML compliant <a href> tag
+ * @see     link_to
  */
-function link_to_reddit($url, $title, $name)
+function link_to_reddit($url, $title, $name = 'reddit', $options = array())
 {
   $title = urlencode($title);
   $url = urlencode($url);
 
-  return link_to($name, 'http://reddit.com/submit?url='.$url.'&title='.$title, array('class' => $name, 'title' => 'Share on reddit'));
+  return link_to($name, 'http://reddit.com/submit?url='.$url.'&title='.$title, social_bookmarking_options('reddit', $options));
 }
 
 /**
@@ -254,16 +286,17 @@ function link_to_reddit($url, $title, $name)
  * 
  * @param   string   $url - Url which should be added 
  * @param   string   $title - Title which describes the content of the page
- * @param   string   $name - Text which is shown on image hover
- * @return  string   Linked icon
- * @see     link_to, image_tag
+ * @param   string   $name - name of the link
+ * @param   array    $options additional HTML compliant <a> tag parameters
+ * @return  string   string XHTML compliant <a href> tag
+ * @see     link_to
  */
-function link_to_tailrank($url, $title, $name)
+function link_to_tailrank($url, $title, $name = 'tailrank', $options = array())
 {
   $title = urlencode($title);
   $url = urlencode($url);
 
-  return link_to($name, 'http://tailrank.com/share/?link_href='.$url.'&title='.$title, array('class' => $name, 'title' => 'Share on Tailrank'));
+  return link_to($name, 'http://tailrank.com/share/?link_href='.$url.'&title='.$title, social_bookmarking_options('tailrank', $options));
 }
 
 /**
@@ -271,47 +304,69 @@ function link_to_tailrank($url, $title, $name)
  * 
  * @param   string   $url - Url which should be added 
  * @param   string   $title - Title which describes the content of the page
- * @param   string   $name - Text which is shown on image hover
- * @return  string   Linked icon
- * @see     link_to, image_tag
+ * @param   string   $name - name of the link
+ * @param   array    $options additional HTML compliant <a> tag parameters
+ * @return  string   string XHTML compliant <a href> tag
+ * @see     link_to
  */
-function link_to_spurl($url, $title, $name)
+function link_to_spurl($url, $title, $name = 'spurl', $options = array())
 {
   $title = urlencode($title);
   $url = urlencode($url);
 
-  return link_to($name, 'http://www.spurl.net/spurl.php?title='.$title.'&url='.$url, array('class' => $name, 'title' => 'Share on spurl'));
+  return link_to($name, 'http://www.spurl.net/spurl.php?title='.$title.'&url='.$url, social_bookmarking_options('spurl', $options));
 }
 
 /**
  * Builds a link to add url to Yigg.
  * 
  * @param   string   $url - Url which should be added 
- * @param   string   $name - Text which is shown on image hover
- * @return  string   Linked icon
- * @see     link_to, image_tag
+ * @param   string   $name - name of the link
+ * @param   array    $options additional HTML compliant <a> tag parameters
+ * @return  string   string XHTML compliant <a href> tag
+ * @see     link_to
  */
-function link_to_yigg($url, $name)
+function link_to_yigg($url, $name = 'yigg', $options = array())
 {
   $url = urlencode($url);
 
-  return link_to($name, 'http://yigg.de/neu?exturl='.$url, array('class' => $name, 'title' => "Share on yigg"));
+  return link_to($name, 'http://yigg.de/neu?exturl='.$url, social_bookmarking_options('yigg', $options));
 }
 
-function link_to_twitter($url, $title, $name)
+/**
+ * Builds a link to add url to twitter.
+ *
+ * @param   string   $url - Url which should be added
+ * @param   string   $title - Title which describes the content of the page
+ * @param   string   $name - name of the link
+ * @param   array    $options additional HTML compliant <a> tag parameters
+ * @return  string   string XHTML compliant <a href> tag
+ * @see     link_to
+ */
+function link_to_twitter($url, $title, $name = 'twitter', $options = array())
 {
   $url = urlencode($url);
   $title = urlencode($title);
   
-  return link_to($name, 'http://twitter.com/home?status='.$url.'+'.$title, array('class' => $name, 'title' => 'Share on twitter'));
+  return link_to($name, 'http://twitter.com/home?status='.$url.'+'.$title, social_bookmarking_options('twitter', $options));
 }
 
-function link_to_facebook($url, $title, $name)
+/**
+ * Builds a link to add url to facebook.
+ *
+ * @param   string   $url - Url which should be added
+ * @param   string   $title - Title which describes the content of the page
+ * @param   string   $name - name of the link
+ * @param   array    $options additional HTML compliant <a> tag parameters
+ * @return  string   string XHTML compliant <a href> tag
+ * @see     link_to
+ */
+function link_to_facebook($url, $title, $name = 'facebook', $options = array())
 {
   $url = urlencode($url);
   $title = urlencode($title);
 
-  return link_to($name, 'http://www.facebook.com/share.php?u='.$url.'&title='.$title, array('class' => $name, 'title' => 'Share on facebook'));
+  return link_to($name, 'http://www.facebook.com/share.php?u='.$url.'&title='.$title, social_bookmarking_options('facebook', $options));
 }
 
 /**
@@ -319,33 +374,41 @@ function link_to_facebook($url, $title, $name)
  * 
  * @param   string   $url - Url which should be added 
  * @param   string   $title - Title which describes the content of the page
- * @return  string   Linked icons
+ * @return  string   string XHTML compliant <a href> tags
  * @see     link_to_delicious, link_to_technorati, link_to_furl, link_to_yahoo_myweb, link_to_google_bookmarks, link_to_blinklist, link_to_magnolia, link_to_windows_live, link_to_digg, link_to_netscape, link_to_stumbleupon, link_to_newsvine, link_to_reddit, link_to_tailrank, link_to_spurl, link_to_yigg
  */
 function link_to_all_social_bookmarking($url, $title)
 {
-  $links = link_to_twitter($url, $title);
-  $links .= ' '.link_to_facebook($url, $title);
-  $links .= ' '.link_to_delicious($url, $title);
-  $links .= ' '.link_to_technorati($url);
-  $links .= ' '.link_to_furl($url, $title);
-  $links .= ' '.link_to_yahoo_myweb($url, $title);
-  $links .= ' '.link_to_google_bookmarks($url, $title);
-  $links .= ' '.link_to_blinklist($url, $title);
-  $links .= ' '.link_to_magnolia($url, $title);
-  $links .= ' '.link_to_windows_live($url, $title);
-  $links .= ' '.link_to_digg($url, $title);
-  $links .= ' '.link_to_netscape($url, $title);
-  $links .= ' '.link_to_stumbleupon($url, $title);
-  $links .= ' '.link_to_newsvine($url, $title);
-  $links .= ' '.link_to_reddit($url, $title);
-  $links .= ' '.link_to_tailrank($url, $title);
-  $links .= ' '.link_to_spurl($url, $title);
-  $links .= ' '.link_to_yigg($url);
+  $links = '<li>'.link_to_twitter($url, $title).'</li>';
+  $links .= '<li>'.link_to_facebook($url, $title).'</li>';
+  $links .= '<li>'.link_to_delicious($url, $title).'</li>';
+  $links .= '<li>'.link_to_technorati($url).'</li>';
+  $links .= '<li>'.link_to_furl($url, $title).'</li>';
+  $links .= '<li>'.link_to_yahoo_myweb($url, $title).'</li>';
+  $links .= '<li>'.link_to_google_bookmarks($url, $title).'</li>';
+  $links .= '<li>'.link_to_blinklist($url, $title).'</li>';
+  $links .= '<li>'.link_to_magnolia($url, $title).'</li>';
+  $links .= '<li>'.link_to_windows_live($url, $title).'</li>';
+  $links .= '<li>'.link_to_digg($url, $title).'</li>';
+  $links .= '<li>'.link_to_netscape($url, $title).'</li>';
+  $links .= '<li>'.link_to_stumbleupon($url, $title).'</li>';
+  $links .= '<li>'.link_to_newsvine($url, $title).'</li>';
+  $links .= '<li>'.link_to_reddit($url, $title).'</li>';
+  $links .= '<li>'.link_to_tailrank($url, $title).'</li>';
+  $links .= '<li>'.link_to_spurl($url, $title).'</li>';
+  $links .= '<li>'.link_to_yigg($url).'</li>';
 
   return $links;
 }
 
+/**
+ * Builds links for defined bookmarking services.
+ *
+ * @param   mixed   $social_bookmarking - array or string (separated by , character) of bookmarking services
+ * @param   mixed   $url - Url which should be added
+ * @param   string  $title - Title which describes the content of the page
+ * @return  string  string XHTML compliant <a href> tags
+ */
 function link_to_social_bookmarking($social_bookmarking, $url, $title = null)
 {
   $links = '';
