@@ -62,9 +62,11 @@ class PluginsfSimpleBlogPostQuery extends BasesfSimpleBlogPostQuery {
   public function categorized($category)
   {
     return $this
-       >join('sfSimpleBlogPost.sfSimpleBlogPostCategory')
-      ->join('sfSimpleBlogPostCategory.sfSimpleBlogCategory')
-      ->where('sfSimpleBlogCategory.Name = ?', $category);
+      ->usesfSimpleBlogPostCategoryQuery()
+        ->usesfSimpleBlogCategoryQuery()
+          ->filterByName($category)
+        ->endUse()
+      ->endUse();
   }
 
   public function tagged($tags = array())
