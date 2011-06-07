@@ -40,4 +40,14 @@ class BasesfSimpleBlogComponents extends sfComponents
   {
     $this->pages = sfSimpleBlogPageQuery::create()->filterByIsPublished(true)->find();
   }
+
+  public function executeMonthArchives()
+  {
+    $this->monthArchives = sfSimpleBlogArchiveQuery::create()
+      ->filterByCount(array('min' => 1))
+      ->orderByYear(Criteria::DESC)
+      ->orderByMonth(Criteria::DESC)
+      ->limit(sfConfig::get('app_sfSimpleBlog_month_archives', 12))
+      ->find();
+  }
 }

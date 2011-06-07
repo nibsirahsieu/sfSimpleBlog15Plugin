@@ -87,7 +87,7 @@ The plugin is highly configurable and should be easy to integrate to an existing
         post_recent:           5          # number of posts to display in the recent sidebar widget
 
         feed_count:            5          # number of posts appearing in the RSS feed
-        sidebar:               [tags, recent_posts, recent_comments, feeds, links]
+        sidebar:               [tags, recent_posts, recent_comments, feeds, links, month_archives]
         comment_disable_after: 0          # number of days after which comments on a post are not possible anymore
         share_on:                         # social bookmarks (see SocialBookmarkingHelper.php)
           - twitter
@@ -96,7 +96,7 @@ The plugin is highly configurable and should be easy to integrate to an existing
           - stumbleupon
           - digg
           - reddit
-
+        month_archives:        12
       theme:
         themes:
           backend_theme:
@@ -119,6 +119,7 @@ The `sidebar` array controls which widgets, and in which order, appear in the si
  - `feeds`: links to the RSS and Atom feeds
  - `recent_comments`: list of recent comments
  - `links`: list of links
+ - `month_archives`: list of archives per month
 
 ## Routings ##
 
@@ -131,7 +132,7 @@ The routes are automatically registered unless you defined `sfSimpleBlog_routes_
 
 As a consequent, you have to define the routes in your `routings.yml`. This is useful if you want to handle cross application routing using [swCrossLinkApplicationPlugin](https://github.com/rande/swCrossLinkApplicationPlugin).
 
-Those routes are (see sfSimpleBlog15Routing.class.php):
+Those routes are (see `sfSimpleBlog15Routing.class.php`):
 
 ### Front-end routes ###
 
@@ -172,7 +173,27 @@ Those routes are (see sfSimpleBlog15Routing.class.php):
       url: /:year/:month/:day/:stripped_title/comments/:format
       param: { module: sfSimpleBlogFeed, action: commentsForPostFeed, format: atom1 }
 
+    sf_simple_blog_month_archives:
+      url: /:year/:month/archives
+      param: { module: sfSimpleBlog, action: monthArchives }
+
 ### Back-end routes ###
+
+    sf_simple_blog_post_view_version:
+      url: /sf_simple_blog_post/:id/show.:sf_format
+      param: { module: sfSimpleBlogPostAdmin, action: viewVersion, sf_format: html}
+
+    sf_simple_blog_post_restore_version:
+      url: /sf_simple_blog_post/:id/restore.:sf_format
+      param: { module: sfSimpleBlogPostAdmin, action: restoreVersion, sf_format: html}
+
+    sf_simple_blog_post_delete_version:
+      url: /sf_simple_blog_post/:id/delete.:sf_format
+      param: { module: sfSimpleBlogPostAdmin, action: deleteVersion, sf_format: html}
+
+    sf_simple_blog_post_delete_versions:
+      url: /sf_simple_blog_post/deleteVersions.:sf_format
+      param: { module: sfSimpleBlogPostAdmin, action: deleteVersions, sf_format: html}
 
     sf_simple_blog_post:
       class: sfPropel15RouteCollection
@@ -227,22 +248,6 @@ Those routes are (see sfSimpleBlog15Routing.class.php):
         prefix_path:          /sf_simple_blog_link_category
         column:               id
         with_wildcard_routes: true
-
-    sf_simple_blog_post_view_version:
-      url: /sf_simple_blog_post/:id/show.:sf_format
-      param: { module: sfSimpleBlogPostAdmin, action: viewVersion, sf_format: html}
-
-    sf_simple_blog_post_restore_version:
-      url: /sf_simple_blog_post/:id/restore.:sf_format
-      param: { module: sfSimpleBlogPostAdmin, action: restoreVersion, sf_format: html}
-
-    sf_simple_blog_post_delete_version:
-      url: /sf_simple_blog_post/:id/delete.:sf_format
-      param: { module: sfSimpleBlogPostAdmin, action: deleteVersion, sf_format: html}
-
-    sf_simple_blog_post_delete_versions:
-      url: /sf_simple_blog_post/deleteVersions.:sf_format
-      param: { module: sfSimpleBlogPostAdmin, action: deleteVersions, sf_format: html}
 
 ## Front-end theme ##
 

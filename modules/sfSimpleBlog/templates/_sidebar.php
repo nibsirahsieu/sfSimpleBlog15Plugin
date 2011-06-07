@@ -29,6 +29,13 @@
     </li>
   <?php elseif ($widget == 'links'): ?>
     <?php include_partial('sfSimpleBlog/links') ?>
+  <?php elseif ($widget == 'month_archives'): ?>
+    <li class="widget-container month_archives">
+      <h3 class="widget-title"><?php echo __('Archives', null, 'sf_simple_blog') ?></h3>
+      <ul>
+        <?php include_component('sfSimpleBlog', 'monthArchives') ?>
+      </ul>
+    </li>
   <?php else: ?>
     <?php echo sfConfig::get('app_sfSimpleBlog_'.$widget) ?>
   <?php endif; ?>

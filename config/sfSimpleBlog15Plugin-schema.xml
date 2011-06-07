@@ -113,4 +113,19 @@
       <unique-column name="uri" />
     </unique>
   </table>
+
+  <table name="sf_blog_archive" phpName="sfSimpleBlogArchive">
+    <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true" />
+    <column name="month_archive" type="smallint" required="true" phpName="Month" />
+    <column name="year_archive" type="smallint" required="true" phpName="Year" />
+    <column name="cnt" type="integer" required="true" default="0" phpName="Count" />
+    <behavior name="symfony">
+      <parameter name="form" value="false" />
+      <parameter name="filter" value="false" />
+    </behavior>
+    <unique>
+      <unique-column name="month_archive" />
+      <unique-column name="year_archive" />
+    </unique>
+  </table>
 </database>

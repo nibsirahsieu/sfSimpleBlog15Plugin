@@ -17,4 +17,13 @@ class sfSimpleBlogPostFullForm extends sfSimpleBlogPostForm
       'taggable_object'          => $this->getObject()
     ));
   }
+
+  public function updateDefaultsFromObject()
+  {
+    parent::updateDefaultsFromObject();
+    if ($this->isNew())
+    {
+      $this->setDefault('internal_published_at', time());
+    }
+  }
 }

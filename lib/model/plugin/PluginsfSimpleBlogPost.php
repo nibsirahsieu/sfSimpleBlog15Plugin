@@ -18,6 +18,9 @@
  * @package    propel.generator.plugins.sfSimpleBlog15Plugin.lib.model.plugin
  */
 class PluginsfSimpleBlogPost extends BasesfSimpleBlogPost {
+  protected $previousPublishedAt = null;
+  protected $previousIsPublished = false;
+  
   public function  getExtract()
   {
     //search for <p><!-- pagebreak --></p>
@@ -32,13 +35,24 @@ class PluginsfSimpleBlogPost extends BasesfSimpleBlogPost {
     }
     return $v;
   }
-  
+
+  public function setIsPublished($v)
+  {
+    $this->previousIsPublished = $this->getIsPublished();
+    return parent::setIsPublished($v);
+  }
   public function setInternalPublishedAt($v)
   {
-    $this->setPublishedAt($v);
     parent::setInternalPublishedAt($v);
+    return $this->setPublishedAt($v);
   }
 
+  public function  setPublishedAt($v)
+  {
+    if (!$this->isNew()) $this->previousPublishedAt = $this->getPublishedAt(null);
+    return parent::setPublishedAt($v);
+  }
+  
   public function getAuthor(PropelPDO $con = null)
   {
     return $this->getsfGuardUser($con);
@@ -142,7 +156,49 @@ class PluginsfSimpleBlogPost extends BasesfSimpleBlogPost {
   {
     return sfSimpleBlogTools::generatePostUri($this);
   }
-  
+
+  public function preSave(PropelPDO $con = null)
+  {
+    if ($this->isNew() && $this->getIsPublished())
+    {
+      sfSimpleBlogArchivePeer::incrementCounter($this->getPublishedAt(), $con);
+    }
+    elseif (!$this->isNew())
+    {
+      if (!$this->getIsPublished())
+      {
+        if ($this->previousIsPublished)
+        {
+          //user unpublished an article
+          //sfSimpleBlogArchivePeer::decrementCounter($this->getPublishedAt(), $con);
+          sfSimpleBlogArchivePeer::decrementCounter($this->previousPublishedAt->format('Y-m-d'), $con);
+        }
+      }
+      else
+      {
+        if (!$this->previousIsPublished)
+        {
+          //user published an article
+          sfSimpleBlogArchivePeer::incrementCounter($this->getPublishedAt(), $con);
+        }
+        else
+        {
+          if (!($this->previousPublishedAt->format('n') == $this->getPublishedAt('n') && $this->previousPublishedAt->format('Y') == $this->getPublishedAt('Y')))
+          {
+            //user changed month or year published_at value
+            sfSimpleBlogArchivePeer::decrementCounter($this->previousPublishedAt->format('Y-m-d'), $con);
+            sfSimpleBlogArchivePeer::incrementCounter($this->getPublishedAt(), $con);
+          }
+        }
+      }
+    }
+    return true;
+  }
+
+  public function postDelete(PropelPDO $con = null)
+  {
+    sfSimpleBlogArchivePeer::decrementCounter($this->getPublishedAt(), $con);
+  }
 } // sfSimpleBlogPost
 
 sfPropelBehavior::add('sfSimpleBlogPost', array('sfPropelActAsTaggableBehavior'));

@@ -9,16 +9,17 @@ all:
     post_recent:           5          # number of posts to display in the recent sidebar widget
 
     feed_count:            5          # number of posts appearing in the RSS feed
-    sidebar:               [tags, recent_posts, recent_comments, feeds, links]
-    comment_disable_after: 0
-    share_on:
+    sidebar:               [tags, recent_posts, recent_comments, feeds, links, month_archives]
+    comment_disable_after: 0          # number of days after which comments on a post are not possible anymore
+    share_on:                         # social bookmarks
       - twitter
       - facebook
       - delicious
       - stumbleupon
       - digg
       - reddit
-      
+    month_archives:        12
+    
   theme:
     themes:
       backend_theme:
@@ -31,3 +32,6 @@ all:
           - ../sfSimpleBlog15Plugin/css/button.css
 
         javascripts:  []
+
+  sf_guard_plugin:
+    signin_form: sfSimpleBlogFormSignin

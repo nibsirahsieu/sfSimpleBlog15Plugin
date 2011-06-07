@@ -76,4 +76,19 @@ class BasesfSimpleBlogActions extends sfActions
   {
     $this->forward404Unless($this->page = sfSimpleBlogPageQuery::create()->filterByStrippedTitle($request->getParameter('page_title'))->findOne());
   }
+
+  public function executeMonthArchives(sfWebRequest $request)
+  {
+    $month = $request->getParameter('month');
+    $year = $request->getParameter('year');
+    $this_month = mktime(0, 0, 0, $month, 1, $year);
+    $next_month = mktime(0, 0, 0, $month+1, 1, $year);
+    $this->posts = sfSimpleBlogPostQuery::create()
+      ->recent()
+      ->published()
+      ->filterByPublishedAt($this_month, Criteria::GREATER_EQUAL)
+      ->filterByPublishedAt($next_month, Criteria::LESS_THAN)
+      ->find();
+    $this->this_month = $this_month;
+  }
 }

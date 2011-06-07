@@ -19,7 +19,10 @@ class sfSimpleBlogPostForm extends BasesfSimpleBlogPostForm
     parent::updateDefaultsFromObject();
     if ($this->isNew())
     {
-      if (self::getUser()->getGuardUser()) $this->setDefault('author_id', self::getUser()->getGuardUser()->getId());
+      if (self::getUser()->getGuardUser()) 
+      {
+        $this->setDefault('author_id', self::getUser()->getGuardUser()->getId());
+      }
     }
   }
 }

@@ -17,7 +17,8 @@ class sfSimpleBlog15Routing
     }
     $r->prependRoute('sf_simple_blog_show_by_tag', new sfRoute('/tag/:tag', array('module' => 'sfSimpleBlog', 'action' => 'showByTag')));
     $r->prependRoute('sf_simple_blog_show_by_category', new sfRoute('/category/:category', array('module' => 'sfSimpleBlog', 'action' => 'showByCategory')));
-    $r->prependRoute('sf_simple_blog_search', new sfRoute('/search', array('module' => 'sfSimpleBlog', 'action' => 'search')));    
+    $r->prependRoute('sf_simple_blog_search', new sfRoute('/search', array('module' => 'sfSimpleBlog', 'action' => 'search')));
+    $r->prependRoute('sf_simple_blog_month_archives', new sfRoute('/:year/:month/archives', array('module' => 'sfSimpleBlog', 'action' => 'monthArchives')));
   }
 
   static public function listenToFeedRoutingLoadConfigurationEvent(sfEvent $event)
