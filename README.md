@@ -260,7 +260,7 @@ You can create your own theme and set it as default. You can find the instructio
 
 ## Back-end theme ##
 
-This plugin comes with the default backend theme. To active it, add the code below to your backend configuration (fe: backendConfiguration.class.php)
+This plugin comes with the default backend theme. To activate it, add the code below to your backend configuration (fe: backendConfiguration.class.php)
 
     [php]
     public function configure()
