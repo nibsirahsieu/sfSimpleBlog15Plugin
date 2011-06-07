@@ -170,7 +170,6 @@ class PluginsfSimpleBlogPost extends BasesfSimpleBlogPost {
         if ($this->previousIsPublished)
         {
           //user unpublished an article
-          //sfSimpleBlogArchivePeer::decrementCounter($this->getPublishedAt(), $con);
           sfSimpleBlogArchivePeer::decrementCounter($this->previousPublishedAt->format('Y-m-d'), $con);
         }
       }
