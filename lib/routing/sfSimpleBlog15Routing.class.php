@@ -7,24 +7,35 @@ class sfSimpleBlog15Routing
 
     // preprend our routes
     $r->prependRoute('sf_simple_blog_show_page', new sfRoute('/:page_title', array('module' => 'sfSimpleBlog', 'action' => 'page')));
+    if (sfConfig::get('app_sfSimpleBlog_use_date_in_url', false))
+    {
+      $r->prependRoute('sf_simple_blog_show', new sfRoute('/:year/:month/:day/:stripped_title', array('module'=>'sfSimpleBlog', 'action'=>'show')));
+    }
+    else
+    {
+      $r->prependRoute('sf_simple_blog_show', new sfRoute('/:stripped_title', array('module'=>'sfSimpleBlog', 'action'=>'show')));
+    }
+    $r->prependRoute('sf_simple_blog_show_by_tag', new sfRoute('/tag/:tag', array('module' => 'sfSimpleBlog', 'action' => 'showByTag')));
+    $r->prependRoute('sf_simple_blog_show_by_category', new sfRoute('/category/:category', array('module' => 'sfSimpleBlog', 'action' => 'showByCategory')));
+    $r->prependRoute('sf_simple_blog_search', new sfRoute('/search', array('module' => 'sfSimpleBlog', 'action' => 'search')));    
+  }
+
+  static public function listenToFeedRoutingLoadConfigurationEvent(sfEvent $event)
+  {
+    $r = $event->getSubject();
     $r->prependRoute('sf_simple_blog_posts_feed', new sfRoute('/posts/:format', array('module' => 'sfSimpleBlogFeed', 'action' => 'postsFeed', 'format' => 'atom1')));
     $r->prependRoute('sf_simple_blog_comments_feed', new sfRoute('/comments/:format', array('module' => 'sfSimpleBlogFeed', 'action' => 'commentsFeed', 'format' => 'atom1')));
     $r->prependRoute('sf_simple_blog_posts_tag_feed', new sfRoute('/tags/:tag/:format', array('module' => 'sfSimpleBlogFeed', 'action' => 'postsForTagFeed', 'format' => 'atom1')));
     if (sfConfig::get('app_sfSimpleBlog_use_date_in_url', false))
     {
-      $r->prependRoute('sf_simple_blog_show', new sfRoute('/:year/:month/:day/:stripped_title', array('module'=>'sfSimpleBlog', 'action'=>'show')));
       $r->prependRoute('sf_simple_blog_comments_post_feed', new sfRoute('/:year/:month/:day/:stripped_title/comments/:format', array('module' => 'sfSimpleBlogFeed', 'action' => 'commentsForPostFeed', 'format' => 'atom1')));
     }
     else
     {
-      $r->prependRoute('sf_simple_blog_show', new sfRoute('/:stripped_title', array('module'=>'sfSimpleBlog', 'action'=>'show')));
       $r->prependRoute('sf_simple_blog_comments_post_feed', new sfRoute('/:stripped_title/comments/:format', array('module' => 'sfSimpleBlogFeed', 'action' => 'commentsForPostFeed', 'format' => 'atom1')));
     }
-    $r->prependRoute('sf_simple_blog_show_by_tag', new sfRoute('/tag/:tag', array('module' => 'sfSimpleBlog', 'action' => 'showByTag')));
-    $r->prependRoute('sf_simple_blog_show_by_category', new sfRoute('/category/:category', array('module' => 'sfSimpleBlog', 'action' => 'showByCategory')));
-    $r->prependRoute('sf_simple_blog_search', new sfRoute('/search', array('module' => 'sfSimpleBlog', 'action' => 'search')));
   }
-  
+
   static public function addRouteForPostAdmin(sfEvent $event)
   {
     $subject = $event->getSubject();

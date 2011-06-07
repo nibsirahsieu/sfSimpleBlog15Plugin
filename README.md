@@ -29,6 +29,7 @@ This plugin contains nine modules that you can activate in whatever application 
  * `sfSimpleBlogTagAdmin`: Backend for managing tags
 
 ## Installation ##
+
   * Install the plugin
 
         git clone git://github.com/nibsirahsieu/sfSimpleBlog15Plugin.git
@@ -88,7 +89,7 @@ The plugin is highly configurable and should be easy to integrate to an existing
         feed_count:            5          # number of posts appearing in the RSS feed
         sidebar:               [tags, recent_posts, recent_comments, feeds, links]
         comment_disable_after: 0          # number of days after which comments on a post are not possible anymore
-        share_on:                         # social bookmarks
+        share_on:                         # social bookmarks (see SocialBookmarkingHelper.php)
           - twitter
           - facebook
           - delicious
@@ -119,10 +120,138 @@ The `sidebar` array controls which widgets, and in which order, appear in the si
  - `recent_comments`: list of recent comments
  - `links`: list of links
 
+## Routings ##
+
+The routes are automatically registered unless you defined `sfSimpleBlog_routes_register` to false in the `app.yml` configuration file:
+
+    [yml]
+    all:
+      sfSimpleBlog:
+        routes_register: false
+
+As a consequent, you have to define the routes in your `routings.yml`. This is useful if you want to handle cross application routing using [swCrossLinkApplicationPlugin](https://github.com/rande/swCrossLinkApplicationPlugin).
+
+Those routes are (see sfSimpleBlog15Routing.class.php):
+
+### Front-end routes ###
+
+    [yml]
+    sf_simple_blog_show_page:
+      url: /:page_title
+      param: { module: sfSimpleBlog, action: page }
+
+    sf_simple_blog_show:
+      url: /:year/:month/:day/:stripped_title
+      param: { module: sfSimpleBlog, action: show }
+
+    sf_simple_blog_show_by_tag:
+      url: /tag/:tag
+      param: { module: sfSimpleBlog, action: showByTag }
+
+    sf_simple_blog_show_by_category:
+      url: /category/:category
+      param: { module: sfSimpleBlog, action: showByCategory }
+
+    sf_simple_blog_search:
+      url: /search
+      param: { module: sfSimpleBlog, action: search }
+
+    sf_simple_blog_posts_feed:
+      url: /posts/:format
+      param: { module: sfSimpleBlogFeed, action: postsFeed, format: atom1 }
+
+    sf_simple_blog_comments_feed:
+      url: /comments/:format
+      param: { module: sfSimpleBlogFeed, action: commentsFeed, format: atom1 }
+
+    sf_simple_blog_posts_tag_feed:
+      url: /tags/:tag/:format
+      param: { module: sfSimpleBlogFeed, action: postsForTagFeed, format: atom1 }
+
+    sf_simple_blog_comments_post_feed:
+      url: /:year/:month/:day/:stripped_title/comments/:format
+      param: { module: sfSimpleBlogFeed, action: commentsForPostFeed, format: atom1 }
+
+### Back-end routes ###
+
+    sf_simple_blog_post:
+      class: sfPropel15RouteCollection
+      options:
+        model:                sfSimpleBlogPost
+        module:               sfSimpleBlogPostAdmin
+        prefix_path:          /sf_simple_blog_post
+        column:               id
+        with_wildcard_routes: true
+
+    sf_simple_blog_category:
+      class: sfPropel15RouteCollection
+      options:
+        model:                sfSimpleBlogCategory
+        module:               sfSimpleBlogCategoryAdmin
+        prefix_path:          /sf_simple_blog_category
+        column:               id
+        with_wildcard_routes: true
+
+    sf_simple_blog_page:
+      class: sfPropel15RouteCollection
+      options:
+        model:                sfSimpleBlogPage
+        module:               sfSimpleBlogPageAdmin
+        prefix_path:          /sf_simple_blog_page
+        column:               id
+        with_wildcard_routes: true
+
+    sf_simple_blog_tag:
+      class: sfPropel15RouteCollection
+      options:
+        model:                Tag
+        module:               sfSimpleBlogTagAdmin
+        prefix_path:          /sf_simple_blog_tag
+        column:               id
+        with_wildcard_routes: true
+
+    sf_simple_blog_link:
+      class: sfPropel15RouteCollection
+      options:
+        model:                sfSimpleBlogLink
+        module:               sfSimpleBlogLinkAdmin
+        prefix_path:          /sf_simple_blog_link
+        column:               id
+        with_wildcard_routes: true
+
+    sf_simple_blog_link_category:
+      class: sfPropel15RouteCollection
+      options:
+        model:                sfSimpleBlogLinkCategory
+        module:               sfSimpleBlogLinkCategoryAdmin
+        prefix_path:          /sf_simple_blog_link_category
+        column:               id
+        with_wildcard_routes: true
+
+    sf_simple_blog_post_view_version:
+      url: /sf_simple_blog_post/:id/show.:sf_format
+      param: { module: sfSimpleBlogPostAdmin, action: viewVersion, sf_format: html}
+
+    sf_simple_blog_post_restore_version:
+      url: /sf_simple_blog_post/:id/restore.:sf_format
+      param: { module: sfSimpleBlogPostAdmin, action: restoreVersion, sf_format: html}
+
+    sf_simple_blog_post_delete_version:
+      url: /sf_simple_blog_post/:id/delete.:sf_format
+      param: { module: sfSimpleBlogPostAdmin, action: deleteVersion, sf_format: html}
+
+    sf_simple_blog_post_delete_versions:
+      url: /sf_simple_blog_post/deleteVersions.:sf_format
+      param: { module: sfSimpleBlogPostAdmin, action: deleteVersions, sf_format: html}
+
 ## Front-end theme ##
 
 This plugin use [themeVeryplaintxtPlugin](https://github.com/nibsirahsieu/themeVeryplaintxtPlugin) as a default theme.
-You can create your own theme and set it as default. You can find the instuction here [themeTwentytenPlugin](https://github.com/rafaelgou/themeTwentytenPlugin)
+You can create your own theme and set it as default. You can find the instruction here [themeTwentytenPlugin](https://github.com/rafaelgou/themeTwentytenPlugin)
+
+    all:
+      sfSimpleBlog:
+        default_theme: your_theme
 
 ## Back-end theme ##
 

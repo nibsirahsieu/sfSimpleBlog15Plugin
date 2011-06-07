@@ -8,6 +8,10 @@ class sfSimpleBlog15PluginConfiguration extends sfPluginConfiguration
       if (sfConfig::get('app_sfSimpleBlog_use_feeds', false))
       {
         sfConfig::set('sf_enabled_modules', array_merge(sfConfig::get('sf_enabled_modules'), array('sfSimpleBlogFeed')));
+        if (sfConfig::get('app_sfSimpleBlog_routes_register', true))
+        {
+          $this->dispatcher->connect('routing.load_configuration', array('sfSimpleBlog15Routing', 'listenToFeedRoutingLoadConfigurationEvent'));
+        }
       }
       
       if (sfConfig::get('app_sfSimpleBlog_routes_register', true) && in_array('sfSimpleBlog', sfConfig::get('sf_enabled_modules', array())))
@@ -15,11 +19,14 @@ class sfSimpleBlog15PluginConfiguration extends sfPluginConfiguration
         $this->dispatcher->connect('routing.load_configuration', array('sfSimpleBlog15Routing', 'listenToRoutingLoadConfigurationEvent'));
       }
 
-      foreach (array('sfSimpleBlogPostAdmin', 'sfSimpleBlogCategoryAdmin', 'sfSimpleBlogPageAdmin', 'sfSimpleBlogTagAdmin', 'sfSimpleBlogLinkAdmin', 'sfSimpleBlogLinkCategoryAdmin') as $module)
+      if (sfConfig::get('app_sfSimpleBlog_routes_register', true))
       {
-        if (in_array($module, sfConfig::get('sf_enabled_modules')))
+        foreach (array('sfSimpleBlogPostAdmin', 'sfSimpleBlogCategoryAdmin', 'sfSimpleBlogPageAdmin', 'sfSimpleBlogTagAdmin', 'sfSimpleBlogLinkAdmin', 'sfSimpleBlogLinkCategoryAdmin') as $module)
         {
-          $this->dispatcher->connect('routing.load_configuration', array('sfSimpleBlog15Routing', 'addRouteFor'.str_replace('sfSimpleBlog', '', $module)));
+          if (in_array($module, sfConfig::get('sf_enabled_modules')))
+          {
+            $this->dispatcher->connect('routing.load_configuration', array('sfSimpleBlog15Routing', 'addRouteFor'.str_replace('sfSimpleBlog', '', $module)));
+          }
         }
       }
     }
