@@ -52,7 +52,7 @@
     </unique>
   </table>
 
-  <table name="sf_blog_post_category" phpName="sfSimpleBlogPostCategory">
+  <table name="sf_blog_post_category" phpName="sfSimpleBlogPostCategory" isCrossRef="true">
     <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true" />
     <column name="category_id" type="integer" required="true" primaryKey="true" />
     <foreign-key foreignTable="sf_blog_category" onDelete="cascade">

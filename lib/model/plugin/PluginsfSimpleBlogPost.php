@@ -111,25 +111,14 @@ class PluginsfSimpleBlogPost extends BasesfSimpleBlogPost {
 
   public function getCategoriesAsString()
   {
-    $postCategories = $this->getsfSimpleBlogPostCategorysJoinsfSimpleBlogCategory();
+    $postCategories = $this->getsfSimpleBlogCategorys();
     $categories = array();
     foreach ($postCategories as $postCategory)
     {
-      $categories[] = $postCategory->getsfSimpleBlogCategory()->getName();
+      $categories[] = (string) $postCategory;
     }
     if ($categories) return implode($categories, ', ');
     return '';
-  }
-
-  public function getCategoriesAsArray()
-  {
-    $postCategories = $this->getsfSimpleBlogPostCategorysJoinsfSimpleBlogCategory();
-    $categories = array();
-    foreach ($postCategories as $postCategory)
-    {
-      $categories[] = $postCategory->getsfSimpleBlogCategory()->getName();
-    }
-    return $categories;
   }
 
   public function getPreviousPost()

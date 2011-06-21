@@ -41,7 +41,7 @@
   <div class="entry-meta">
     <span class="entry-category">
       <?php echo __('Posted in ') ?>&rsaquo;
-      <?php echo __('%1%', array('%1%' => get_category_links($post->getCategoriesAsArray()))) ?>
+      <?php echo __('%1%', array('%1%' => get_category_links($post->getsfSimpleBlogCategorys()))) ?>
     </span>
     <span class="meta-sep">|</span>
     <span class="tag-links">
