@@ -6,7 +6,7 @@ class sfSimpleBlog15Routing
     $r = $event->getSubject();
 
     // preprend our routes
-    $r->prependRoute('sf_simple_blog_show_page', new sfRoute('/:page_title', array('module' => 'sfSimpleBlog', 'action' => 'page')));
+    $r->prependRoute('sf_simple_blog_show_page', new sfRoute('/page/:page_title', array('module' => 'sfSimpleBlog', 'action' => 'page')));
     if (sfConfig::get('app_sfSimpleBlog_use_date_in_url', false))
     {
       $r->prependRoute('sf_simple_blog_show', new sfRoute('/:year/:month/:day/:stripped_title', array('module'=>'sfSimpleBlog', 'action'=>'show')));
