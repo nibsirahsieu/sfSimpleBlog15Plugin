@@ -1,6 +1,6 @@
 # sfSimpleBlog15Plugin #
 
-The `sfSimpleBlog15Plugin` is a symfony plugin to create a simple blog. This plugin use sfPropel15Plugin (1.6 branch) as an ORM, and it is based on [sfSimpleBlogPlugin](http://www.symfony-project.org/plugins/sfSimpleBlogPlugin).
+The `sfSimpleBlog15Plugin` is a symfony plugin to create a simple blog. This plugin use [sfPropelORMPlugin](https://github.com/propelorm/sfPropelORMPlugin), and it is based on [sfSimpleBlogPlugin](http://www.symfony-project.org/plugins/sfSimpleBlogPlugin).
 
 The `sfSimpleBlog15Plugin` adds standard weblog features to an existing website:
 
@@ -183,7 +183,7 @@ Those routes are (see `sfSimpleBlog15Routing.class.php`):
 
     [yml]
     sf_simple_blog_show_page:
-      url: /:page_title
+      url: /page/:page_title
       param: { module: sfSimpleBlog, action: page }
 
     sf_simple_blog_show:
