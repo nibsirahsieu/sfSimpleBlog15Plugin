@@ -40,7 +40,7 @@ class sfSimpleBlog15Routing
   static public function addRouteForPostAdmin(sfEvent $event)
   {
     $subject = $event->getSubject();
-    $subject->prependRoute('sf_simple_blog_post', new sfPropel15RouteCollection(array(
+    $subject->prependRoute('sf_simple_blog_post', new sfPropelORMRouteCollection(array(
       'name'                 => 'sf_simple_blog_post',
       'model'                => 'sfSimpleBlogPost',
       'module'               => 'sfSimpleBlogPostAdmin',
@@ -56,7 +56,7 @@ class sfSimpleBlog15Routing
 
   static public function addRouteForCategoryAdmin(sfEvent $event)
   {
-    $event->getSubject()->prependRoute('sf_simple_blog_category', new sfPropel15RouteCollection(array(
+    $event->getSubject()->prependRoute('sf_simple_blog_category', new sfPropelORMRouteCollection(array(
       'name'                 => 'sf_simple_blog_category',
       'model'                => 'sfSimpleBlogCategory',
       'module'               => 'sfSimpleBlogCategoryAdmin',
@@ -68,7 +68,7 @@ class sfSimpleBlog15Routing
 
   static public function addRouteForPageAdmin(sfEvent $event)
   {
-    $event->getSubject()->prependRoute('sf_simple_blog_page', new sfPropel15RouteCollection(array(
+    $event->getSubject()->prependRoute('sf_simple_blog_page', new sfPropelORMRouteCollection(array(
       'name'                 => 'sf_simple_blog_page',
       'model'                => 'sfSimpleBlogPage',
       'module'               => 'sfSimpleBlogPageAdmin',
@@ -80,7 +80,7 @@ class sfSimpleBlog15Routing
 
   static public function addRouteForTagAdmin(sfEvent $event)
   {
-    $event->getSubject()->prependRoute('sf_simple_blog_tag', new sfPropel15RouteCollection(array(
+    $event->getSubject()->prependRoute('sf_simple_blog_tag', new sfPropelORMRouteCollection(array(
       'name'                 => 'sf_simple_blog_tag',
       'model'                => 'Tag',
       'module'               => 'sfSimpleBlogTagAdmin',
@@ -92,7 +92,7 @@ class sfSimpleBlog15Routing
 
   static public function addRouteForLinkAdmin(sfEvent $event)
   {
-    $event->getSubject()->prependRoute('sf_simple_blog_link', new sfPropel15RouteCollection(array(
+    $event->getSubject()->prependRoute('sf_simple_blog_link', new sfPropelORMRouteCollection(array(
       'name'                 => 'sf_simple_blog_link',
       'model'                => 'sfSimpleBlogLink',
       'module'               => 'sfSimpleBlogLinkAdmin',
@@ -104,7 +104,7 @@ class sfSimpleBlog15Routing
 
   static public function addRouteForLinkCategoryAdmin(sfEvent $event)
   {
-    $event->getSubject()->prependRoute('sf_simple_blog_link_category', new sfPropel15RouteCollection(array(
+    $event->getSubject()->prependRoute('sf_simple_blog_link_category', new sfPropelORMRouteCollection(array(
       'name'                 => 'sf_simple_blog_link_category',
       'model'                => 'sfSimpleBlogLinkCategory',
       'module'               => 'sfSimpleBlogLinkCategoryAdmin',
