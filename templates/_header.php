@@ -4,7 +4,7 @@
 <div id='sf_admin_theme_header'>
   <p class="f-right">
     User:
-    <strong><?php echo link_to($sf_user->getAuthorName(), 'sfGuardUser/profile?id='.$sf_user->getAuthorId()); ?></strong>&nbsp;&nbsp;&nbsp;&nbsp;
+    <strong><a href="#"><?php echo $sf_user->getGuardUser()->getUsername() ?></a></strong>&nbsp;&nbsp;&nbsp;&nbsp;
     <strong><?php echo link_to(__('Logout', null, 'sf_admin_blog'), '@sf_guard_signout', array('id' => 'logout')); ?></strong>
   </p>
 </div>
