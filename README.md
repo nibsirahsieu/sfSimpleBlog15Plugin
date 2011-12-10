@@ -50,7 +50,7 @@ This plugin contains nine modules that you can activate in whatever application 
 ## Dependencies ##
   * Symfony Plugins :
     * [sfGuardPlugin](http://www.symfony-project.org/plugins/sfGuardPlugin)
-    * [sfPropel15Plugin with 1.6 branch](https://github.com/fzaninotto/sfPropel15Plugin), [have a look at here](https://github.com/fzaninotto/sfPropel15Plugin/blob/1.6/INSTALL.md)
+    * [sfPropelORMPlugin](https://github.com/propelorm/sfPropelORMPlugin)
     * [sfNestedCommentPlugin](https://github.com/nibsirahsieu/sfNestedCommentPlugin)
     * [sfPropelActAsTaggableBehaviorPlugin](http://www.symfony-project.org/plugins/sfPropelActAsTaggableBehaviorPlugin)
     * [sfPropelTaggableWidgetPlugin (trunk version)](http://www.symfony-project.org/plugins/sfPropelTaggableWidgetPlugin)
@@ -68,6 +68,51 @@ This plugin contains nine modules that you can activate in whatever application 
   * tinymce plugins:
     * [preelementfix](http://sourceforge.net/tracker/index.php?func=detail&aid=2671750&group_id=103281&atid=738747)
     * [syntaxhl](https://github.com/RichGuk/syntaxhl)
+
+Back-end usage
+--------------
+  * First, activate `User Dependent Forms`, see [this](http://prendreuncafe.com/blog/post/2010/02/17/User-Dependant-Forms-with-Symfony) article for detail.
+
+  * Enable one or more modules in your `settings.yml` (optional)
+
+        [yml]
+          all:
+            .settings:
+              enabled_modules:
+                - default
+                - sfSimpleBlogAdmin
+                - sfSimpleBlogCategoryAdmin
+                - sfSimpleBlogLinkAdmin
+                - sfSimpleBlogLinkCategoryAdmin
+                - sfSimpleBlogPageAdmin
+                - sfSimpleBlogPostAdmin
+                - sfSimpleBlogTagAdmin
+                ....
+
+  * setup the dashboard
+  
+    Set your application's `homepage` in your application's `routing.yml` to:
+
+        [yml]
+        homepage:
+          url:   /
+          param: { module: sfSimpleBlogAdmin, action: dashboard }
+
+Front-end usage
+---------------
+  * Enable sfSimpleBlog module in your `settings.yml`;
+
+        [yml]
+          all:
+            .settings:
+              enabled_modules: [default, sfSimpleBlog]
+
+  * Set your application's `homepage` in your application's `routing.yml` to:
+
+        [yml]
+        homepage:
+          url:   /
+          param: { module: sfSimpleBlog, action: index }
 
 Configuration
 -------------
@@ -196,7 +241,7 @@ Those routes are (see `sfSimpleBlog15Routing.class.php`):
       param: { module: sfSimpleBlogPostAdmin, action: deleteVersions, sf_format: html}
 
     sf_simple_blog_post:
-      class: sfPropel15RouteCollection
+      class: sfPropelORMRouteCollection
       options:
         model:                sfSimpleBlogPost
         module:               sfSimpleBlogPostAdmin
@@ -205,7 +250,7 @@ Those routes are (see `sfSimpleBlog15Routing.class.php`):
         with_wildcard_routes: true
 
     sf_simple_blog_category:
-      class: sfPropel15RouteCollection
+      class: sfPropelORMRouteCollection
       options:
         model:                sfSimpleBlogCategory
         module:               sfSimpleBlogCategoryAdmin
@@ -214,7 +259,7 @@ Those routes are (see `sfSimpleBlog15Routing.class.php`):
         with_wildcard_routes: true
 
     sf_simple_blog_page:
-      class: sfPropel15RouteCollection
+      class: sfPropelORMRouteCollection
       options:
         model:                sfSimpleBlogPage
         module:               sfSimpleBlogPageAdmin
@@ -223,7 +268,7 @@ Those routes are (see `sfSimpleBlog15Routing.class.php`):
         with_wildcard_routes: true
 
     sf_simple_blog_tag:
-      class: sfPropel15RouteCollection
+      class: sfPropelORMRouteCollection
       options:
         model:                Tag
         module:               sfSimpleBlogTagAdmin
@@ -232,7 +277,7 @@ Those routes are (see `sfSimpleBlog15Routing.class.php`):
         with_wildcard_routes: true
 
     sf_simple_blog_link:
-      class: sfPropel15RouteCollection
+      class: sfPropelORMRouteCollection
       options:
         model:                sfSimpleBlogLink
         module:               sfSimpleBlogLinkAdmin
@@ -241,7 +286,7 @@ Those routes are (see `sfSimpleBlog15Routing.class.php`):
         with_wildcard_routes: true
 
     sf_simple_blog_link_category:
-      class: sfPropel15RouteCollection
+      class: sfPropelORMRouteCollection
       options:
         model:                sfSimpleBlogLinkCategory
         module:               sfSimpleBlogLinkCategoryAdmin
