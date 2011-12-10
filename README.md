@@ -97,6 +97,13 @@ Back-end usage
         homepage:
           url:   /
           param: { module: sfSimpleBlogAdmin, action: dashboard }
+  
+  * change the name of the user profile class and the foreign key name in `app.yml`:
+
+        [yml]
+        sf_guard_plugin:
+          profile_class:      sfSimpleBlogAuthor
+          profile_field_name: user_id
 
 Front-end usage
 ---------------
@@ -114,6 +121,13 @@ Front-end usage
           url:   /
           param: { module: sfSimpleBlog, action: index }
 
+  * change the name of the user profile class and the foreign key name in `app.yml`:
+
+        [yml]
+        sf_guard_plugin:
+          profile_class:      sfSimpleBlogAuthor
+          profile_field_name: user_id
+ 
 Configuration
 -------------
 
