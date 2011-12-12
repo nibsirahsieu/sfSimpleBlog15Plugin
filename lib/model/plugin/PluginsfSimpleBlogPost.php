@@ -19,7 +19,7 @@
  */
 class PluginsfSimpleBlogPost extends BasesfSimpleBlogPost {
   protected $previousPublishedAt = null;
-  protected $previousIsPublished = false;
+  protected $previousIsPublished = null;
   
   public function  getExtract()
   {
@@ -33,20 +33,23 @@ class PluginsfSimpleBlogPost extends BasesfSimpleBlogPost {
     {
       return substr($v, 0, $pos-1);
     }
+    
     return $v;
   }
 
   public function setIsPublished($v)
   {
-    $this->previousIsPublished = $this->getIsPublished();
-    if (!$this->isNew()) {
-      $this->previousPublishedAt = $this->getPublishedAt(null);
-    }
+    $this->previousIsPublished = (bool) $this->getIsPublished();
+    
     return parent::setIsPublished($v);
   }
   public function setInternalPublishedAt($v)
   {
     parent::setInternalPublishedAt($v);
+    if (!$this->isNew()) {
+      $this->previousPublishedAt = $this->getPublishedAt(null);
+    }
+    
     return $this->setPublishedAt($v);
   }
 
@@ -102,12 +105,14 @@ class PluginsfSimpleBlogPost extends BasesfSimpleBlogPost {
   public function setTagsFromString($v)
   {
     $this->addTag($v);
+    
     return $this;
   }
 
   public function getTagsAsString()
   {
     $tags = $this->getTags();
+    
     return implode($tags, ', ');
   }
 
@@ -120,6 +125,7 @@ class PluginsfSimpleBlogPost extends BasesfSimpleBlogPost {
       $categories[] = (string) $postCategory;
     }
     if ($categories) return implode($categories, ', ');
+    
     return '';
   }
 
@@ -150,29 +156,31 @@ class PluginsfSimpleBlogPost extends BasesfSimpleBlogPost {
 
   public function preSave(PropelPDO $con = null)
   {
-    if ($this->isNew() && $this->getIsPublished()) {
+    $isNew = $this->isNew();
+    
+    if ($isNew && $this->getIsPublished()) {
       sfSimpleBlogArchivePeer::incrementCounter($this->getPublishedAt(), $con);
-    }
-    elseif (!$this->isNew())
+    } 
+    elseif (!$isNew) 
     {
       if (!$this->getIsPublished())
       {
-        if ($this->previousIsPublished)
+        if (true === $this->previousIsPublished)
         {
           //user unpublished an article
-          sfSimpleBlogArchivePeer::decrementCounter($this->previousPublishedAt->format('Y-m-d'), $con);
+          sfSimpleBlogArchivePeer::decrementCounter($this->previousPublishedAt ? $this->previousPublishedAt->format('Y-m-d') : $this->getPublishedAt(), $con);
         }
       }
       else
       {
-        if (!$this->previousIsPublished)
+        if (false === $this->previousIsPublished)
         {
           //user published an article
           sfSimpleBlogArchivePeer::incrementCounter($this->getPublishedAt(), $con);
         }
         else
         {
-          if (!($this->previousPublishedAt->format('n') == $this->getPublishedAt('n') && $this->previousPublishedAt->format('Y') == $this->getPublishedAt('Y')))
+          if (null !== $this->previousPublishedAt && !($this->previousPublishedAt->format('n') == $this->getPublishedAt('n') && $this->previousPublishedAt->format('Y') == $this->getPublishedAt('Y')))
           {
             //user changed month or year published_at value
             sfSimpleBlogArchivePeer::decrementCounter($this->previousPublishedAt->format('Y-m-d'), $con);
@@ -181,6 +189,7 @@ class PluginsfSimpleBlogPost extends BasesfSimpleBlogPost {
         }
       }
     }
+    
     return true;
   }
 
