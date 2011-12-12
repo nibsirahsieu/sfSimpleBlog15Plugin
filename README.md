@@ -105,6 +105,13 @@ Back-end usage
           profile_class:      sfSimpleBlogAuthor
           profile_field_name: user_id
 
+  * Change the parent class in `myUser.class.php`
+
+        [php]
+        class myUser extends sfSimpleBlogSecurityUser
+        {
+        }
+
 Front-end usage
 ---------------
   * Enable sfSimpleBlog module in your `settings.yml`;
@@ -128,6 +135,13 @@ Front-end usage
           profile_class:      sfSimpleBlogAuthor
           profile_field_name: user_id
  
+  * Change the parent class in `myUser.class.php`
+
+        [php]
+        class myUser extends sfSimpleBlogSecurityUser
+        {
+        }
+
 Configuration
 -------------
 
