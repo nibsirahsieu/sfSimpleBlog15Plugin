@@ -62,7 +62,7 @@
       <form action="<?php echo url_for('sfSimpleBlogAdmin/saveDraft') ?>" method="post">
         <?php echo $quickForm->renderHiddenFields() ?>
         <p>
-          <?php echo $quickForm['title']->renderRow() ?>
+          <?php echo $quickForm['title']->renderRow(array('class' => 'w98p')) ?>
         </p>
         <p>
           <?php echo $quickForm['content']->renderRow() ?>
