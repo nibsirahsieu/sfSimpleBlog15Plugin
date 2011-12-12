@@ -1,4 +1,6 @@
-<?php $sf_context->getResponse()->setTitle(sfConfig::get('app_sfSimpleBlog_title', 'How is life on earth?').' > '. __('About')) ?>
+<?php slot('title') ?>
+  <?php echo sfConfig::get('app_sfSimpleBlog_title', 'sfSimpleBlog').' | '.$page->getName() ?>
+<?php end_slot() ?>
 
 <div class="post hentry" id="post-<?php echo $page->getId() ?>">
   <h1 class="entry-title"><?php echo $page->getName() ?></h1>
