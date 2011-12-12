@@ -24,9 +24,9 @@ class sfSimpleBlog15Routing
   static public function listenToFeedRoutingLoadConfigurationEvent(sfEvent $event)
   {
     $r = $event->getSubject();
-    $r->prependRoute('sf_simple_blog_posts_feed', new sfRoute('/posts/:format', array('module' => 'sfSimpleBlogFeed', 'action' => 'postsFeed', 'format' => 'atom1')));
-    $r->prependRoute('sf_simple_blog_comments_feed', new sfRoute('/comments/:format', array('module' => 'sfSimpleBlogFeed', 'action' => 'commentsFeed', 'format' => 'atom1')));
-    $r->prependRoute('sf_simple_blog_posts_tag_feed', new sfRoute('/tags/:tag/:format', array('module' => 'sfSimpleBlogFeed', 'action' => 'postsForTagFeed', 'format' => 'atom1')));
+    $r->prependRoute('sf_simple_blog_posts_feed', new sfRoute('/posts.:format', array('module' => 'sfSimpleBlogFeed', 'action' => 'postsFeed')));
+    $r->prependRoute('sf_simple_blog_comments_feed', new sfRoute('/comments.:format', array('module' => 'sfSimpleBlogFeed', 'action' => 'commentsFeed')));
+    $r->prependRoute('sf_simple_blog_posts_tag_feed', new sfRoute('/tags/:tag/:format', array('module' => 'sfSimpleBlogFeed', 'action' => 'postsForTagFeed')));
     if (sfConfig::get('app_sfSimpleBlog_use_date_in_url', false))
     {
       $r->prependRoute('sf_simple_blog_comments_post_feed', new sfRoute('/:year/:month/:day/:stripped_title/comments/:format', array('module' => 'sfSimpleBlogFeed', 'action' => 'commentsForPostFeed', 'format' => 'atom1')));
