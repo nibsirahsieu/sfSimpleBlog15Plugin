@@ -39,6 +39,9 @@ class PluginsfSimpleBlogPost extends BasesfSimpleBlogPost {
   public function setIsPublished($v)
   {
     $this->previousIsPublished = $this->getIsPublished();
+    if (!$this->isNew()) {
+      $this->previousPublishedAt = $this->getPublishedAt(null);
+    }
     return parent::setIsPublished($v);
   }
   public function setInternalPublishedAt($v)
@@ -49,7 +52,6 @@ class PluginsfSimpleBlogPost extends BasesfSimpleBlogPost {
 
   public function  setPublishedAt($v)
   {
-    if (!$this->isNew()) $this->previousPublishedAt = $this->getPublishedAt(null);
     return parent::setPublishedAt($v);
   }
   
@@ -148,8 +150,7 @@ class PluginsfSimpleBlogPost extends BasesfSimpleBlogPost {
 
   public function preSave(PropelPDO $con = null)
   {
-    if ($this->isNew() && $this->getIsPublished())
-    {
+    if ($this->isNew() && $this->getIsPublished()) {
       sfSimpleBlogArchivePeer::incrementCounter($this->getPublishedAt(), $con);
     }
     elseif (!$this->isNew())
