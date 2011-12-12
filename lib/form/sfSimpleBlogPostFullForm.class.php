@@ -5,7 +5,6 @@ class sfSimpleBlogPostFullForm extends sfSimpleBlogPostForm
   {
     parent::configure();
     $this->widgetSchema['content'] = new sfWidgetFormTextareaTinyMCEPost(array(
-  		'width'  => 750,
   		'height' => 350
 		));
     $this->widgetSchema['title']->setAttribute('size', 60);

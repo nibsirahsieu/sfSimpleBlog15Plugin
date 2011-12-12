@@ -39,3 +39,7 @@ ul.previous-tags {margin-bottom: 10px;}
 .error, .error_list {background: none repeat scroll 0 0 #901830;color: #FFFFFF;padding: 4px 8px;}
 
 .box .error, .box .error_list {margin: 0 20px 4px 0;}
+
+#sf_admin_container textarea, #sf_admin_container .w98p { width: 98% }
+
+#sf_admin_container ul.sf_admin_td_actions li { display: block; }

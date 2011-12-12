@@ -21,7 +21,7 @@ generator:
         is_published:                       { label: Published }
         allow_comments:                     { label: Allow Comments }
         internal_published_at:              { label: Published on }
-
+        title:                              { attributes: {class: w98p}}
       list:
         title:            Posts
         query_methods:    [ recent ]
